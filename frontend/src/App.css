@@ -2703,35 +2703,102 @@ main {
   box-shadow: 0 30px 60px rgba(15, 118, 110, 0.15);
 }
 
-.institution {
+.education-pro-card {
+  border-top: 4px solid var(--brand) !important;
+  position: relative;
+}
+
+.institution-pro {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(15, 118, 110, 0.1);
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
   padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(15, 118, 110, 0.1);
 }
 
-.school-name {
+.inst-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--text-0);
-  font-size: 1.2rem;
 }
 
-.achievements {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  margin-top: 1.5rem;
-}
-
-.achievements span {
-  background: rgba(15, 118, 110, 0.12);
-  padding: 8px 16px;
-  border-radius: 30px;
+.spec-badge {
+  background: var(--brand);
+  color: #111;
+  padding: 5px 15px;
+  border-radius: 50px;
   font-size: 0.85rem;
   font-weight: 700;
+  box-shadow: 0 4px 10px rgba(78, 204, 163, 0.3);
+}
+
+.education-description {
+  margin-bottom: 2rem;
+}
+
+.education-description p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  color: var(--text-1);
+}
+
+.academic-highlight {
+  padding-left: 1rem;
+  border-left: 3px solid var(--brand);
+  font-style: italic;
+  color: var(--text-0) !important;
+}
+
+.achievements-pro {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.achieve-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(15, 118, 110, 0.08);
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
   color: var(--brand);
-  border: 1px solid rgba(15, 118, 110, 0.2);
+  border: 1px solid rgba(15, 118, 110, 0.15);
+  transition: 0.2s;
+}
+
+.achieve-pill:hover {
+  background: rgba(15, 118, 110, 0.15);
+  transform: translateY(-3px);
+}
+
+@keyframes pulseDot {
+  0% { box-shadow: 0 0 0 0 rgba(78, 204, 163, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(78, 204, 163, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(78, 204, 163, 0); }
+}
+
+.timeline-dot.pulsing {
+  animation: pulseDot 2s infinite;
+}
+
+[data-theme="dark"] .achieve-pill {
+  background: rgba(78, 204, 163, 0.1);
+  border-color: rgba(78, 204, 163, 0.2);
+}
+
+[data-theme="dark"] .academic-highlight {
+  border-left-color: var(--brand);
+  color: #f1f5f9 !important;
 }
 
 /* Course Explorer */
