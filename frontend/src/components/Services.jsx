@@ -82,60 +82,75 @@ const serviceGroups = [
 ];
 
 const Services = () => {
-  const [openId, setOpenId] = useState('remote-development');
-
-  const toggleOpen = (id) => {
-    setOpenId((current) => (current === id ? '' : id));
-  };
+  const [openId, setOpenId] = useState(null);
 
   return (
-    <section id="services" className="services">
-      <h2>Services</h2>
-      <p className="services-subtitle">
-        Full Stack Solutions: Development, Training & Consulting
-      </p>
-      <p className="services-tagline">
-        I bridge the gap between idea and execution. Build, teach, and advise—end to end.
-      </p>
-      <div className="services-grid">
-        {serviceGroups.map((service) => {
+    <section id="services" className="services-interactive">
+      <div className="section-header">
+        <h2>My Professional Services</h2>
+        <p className="services-subtitle">A step-by-step roadmap to your technical success</p>
+      </div>
+
+      <div className="services-path-container">
+        {/* Start Marker */}
+        <div className="path-marker start">
+          <div className="marker-dot"></div>
+          <span>START</span>
+        </div>
+
+        {/* The Dotted Straight Line Container */}
+        <div className="zigzag-line-v"></div>
+        
+        {serviceGroups.map((service, index) => {
+          const isEven = index % 2 === 0;
           const isOpen = openId === service.id;
+
           return (
-            <div
-              key={service.id}
-              className={`service-card ${isOpen ? 'service-card-open' : ''}`}
-              id={service.id}
+            <div 
+              key={service.id} 
+              className={`service-path-item ${isEven ? 'left' : 'right'} ${isOpen ? 'active' : ''}`}
             >
-              <button
-                type="button"
-                className="service-summary"
-                onClick={() => toggleOpen(service.id)}
-                aria-expanded={isOpen}
+              {/* Step Number on the Path */}
+              <div className="service-step-number">{index + 1}</div>
+
+              {/* The Indicator Arrow */}
+              <div className="service-arrow">
+                <span className="arrow-head"></span>
+              </div>
+              
+              <div 
+                className={`service-path-card ${service.id}`} 
+                onClick={() => setOpenId(isOpen ? null : service.id)}
               >
-                <span className="service-icon" aria-hidden="true">{service.icon}</span>
-                <span className="service-title">{service.title}</span>
-                <span className="service-count">{service.items.length}</span>
-                <span className="service-chevron" aria-hidden="true" />
-              </button>
-              <p className="service-desc">{service.description}</p>
-              <button
-                type="button"
-                className="service-more"
-                onClick={() => toggleOpen(service.id)}
-                aria-controls={`service-${service.id}`}
-              >
-                {isOpen ? 'See less' : 'See more'}
-              </button>
-              {isOpen && (
-                <ul id={`service-${service.id}`}>
-                  {service.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              )}
+                <div className="card-header">
+                  <span className="card-icon">{service.icon}</span>
+                  <h3>{service.title}</h3>
+                </div>
+                <p className="card-desc">{service.description}</p>
+                
+                {isOpen && (
+                  <div className="card-expanded-content">
+                    <ul className="service-checklist">
+                      {service.items.map((item) => (
+                        <li key={item}>✓ {item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                
+                <div className="card-footer">
+                  <span className="expand-hint">{isOpen ? 'Click to close' : 'Click to explore details'}</span>
+                </div>
+              </div>
             </div>
           );
         })}
+
+        {/* End Marker */}
+        <div className="path-marker end">
+          <div className="marker-arrow"></div>
+          <span>HIRE ME</span>
+        </div>
       </div>
     </section>
   );

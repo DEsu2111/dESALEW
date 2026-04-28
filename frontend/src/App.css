@@ -349,27 +349,6 @@ textarea:focus-visible,
   border-bottom: 1px solid rgba(17, 24, 39, 0.06);
 }
 
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(78, 204, 163, 0.09) 0%, transparent 72%);
-  animation: rotate 20s linear infinite;
-  z-index: 0;
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .hero-content {
   max-width: none;
   margin: 0;
@@ -2941,5 +2920,351 @@ main {
   .edu-summary {
     padding: 0.8rem 1rem;
     font-size: 0.9rem;
+  }
+}
+
+/* Services Interactive Path Styles */
+.services-interactive {
+  padding: 8rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.services-path-container {
+  position: relative;
+  margin-top: 5rem;
+  padding: 2rem 0;
+}
+
+.zigzag-line-v {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-image: linear-gradient(to bottom, var(--brand) 50%, transparent 50%);
+  background-size: 2px 20px;
+  background-repeat: repeat-y;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* Straight Line Items */
+.service-path-item {
+  position: relative;
+  width: 50%;
+  margin-bottom: 4rem;
+  z-index: 2;
+  display: flex;
+}
+
+.service-path-item.left {
+  padding-right: 50px;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.service-path-item.right {
+  padding-left: 50px;
+  left: 50%;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.service-arrow {
+  position: absolute;
+  top: 30px;
+  width: 45px;
+  height: 3px;
+  background: var(--brand);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 0 10px rgba(78, 204, 163, 0.3);
+}
+
+.service-path-item.left .service-arrow {
+  right: -25px;
+  justify-content: flex-start;
+}
+
+.service-path-item.right .service-arrow {
+  left: -25px;
+  justify-content: flex-end;
+}
+
+.service-path-item:hover .service-arrow {
+  width: 60px;
+  filter: brightness(1.2);
+  box-shadow: 0 0 20px var(--brand);
+}
+
+.service-path-item.left:hover .service-arrow { right: -10px; }
+.service-path-item.right:hover .service-arrow { left: -10px; }
+
+.arrow-head {
+  width: 12px;
+  height: 12px;
+  border-top: 3px solid var(--brand);
+  border-right: 3px solid var(--brand);
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.service-path-item.left:hover .arrow-head {
+  transform: scale(1.2) rotate(-135deg) !important;
+}
+
+.service-path-item.right:hover .arrow-head {
+  transform: scale(1.2) rotate(45deg) !important;
+}
+
+/* Arrow Colors matching Service Cards */
+.service-path-item:has(.remote-development) .service-arrow,
+.service-path-item:has(.remote-development) .arrow-head { background: #3b82f6; border-color: #3b82f6; }
+
+.service-path-item:has(.code-consulting) .service-arrow,
+.service-path-item:has(.code-consulting) .arrow-head { background: #f59e0b; border-color: #f59e0b; }
+
+.service-path-item:has(.research-support) .service-arrow,
+.service-path-item:has(.research-support) .arrow-head { background: #a855f7; border-color: #a855f7; }
+
+.service-path-item:has(.coding-education) .service-arrow,
+.service-path-item:has(.coding-education) .arrow-head { background: #10b981; border-color: #10b981; }
+
+.service-path-item:has(.custom-delivery) .service-arrow,
+.service-path-item:has(.custom-delivery) .arrow-head { background: #6366f1; border-color: #6366f1; }
+
+.service-path-item:has(.emergency-services) .service-arrow,
+.service-path-item:has(.emergency-services) .arrow-head { background: #ef4444; border-color: #ef4444; }
+
+/* Zigzag Line Colors */
+.service-path-item:has(.remote-development)::after { border-color: #3b82f6; }
+.service-path-item:has(.code-consulting)::after { border-color: #f59e0b; }
+.service-path-item:has(.research-support)::after { border-color: #a855f7; }
+.service-path-item:has(.coding-education)::after { border-color: #10b981; }
+.service-path-item:has(.custom-delivery)::after { border-color: #6366f1; }
+.service-path-item:has(.emergency-services)::after { border-color: #ef4444; }
+
+.service-step-number {
+  position: absolute;
+  top: 25px;
+  width: 32px;
+  height: 32px;
+  background: var(--bg-1);
+  border: 2px solid var(--brand);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: var(--brand);
+  z-index: 5;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.service-path-item.left .service-step-number {
+  right: -16px;
+}
+
+.service-path-item.right .service-step-number {
+  left: -16px;
+}
+
+/* Match Step Number Color to Card */
+.service-path-item:has(.remote-development) .service-step-number { border-color: #3b82f6; color: #3b82f6; }
+.service-path-item:has(.code-consulting) .service-step-number { border-color: #f59e0b; color: #f59e0b; }
+.service-path-item:has(.research-support) .service-step-number { border-color: #a855f7; color: #a855f7; }
+.service-path-item:has(.coding-education) .service-step-number { border-color: #10b981; color: #10b981; }
+.service-path-item:has(.custom-delivery) .service-step-number { border-color: #6366f1; color: #6366f1; }
+.service-path-item:has(.emergency-services) .service-step-number { border-color: #ef4444; color: #ef4444; }
+
+[data-theme="dark"] .service-step-number {
+  background: var(--bg-0);
+}
+
+.service-path-card {
+  background: var(--surface-1);
+  padding: 2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(15, 118, 110, 0.1);
+  box-shadow: var(--shadow-0);
+  width: 100%;
+  max-width: 450px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-path-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--brand);
+  box-shadow: 0 15px 35px rgba(15, 118, 110, 0.15);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 1rem;
+}
+
+.service-path-item.left .card-header {
+  flex-direction: row-reverse;
+}
+
+.card-icon {
+  font-size: 2rem;
+}
+
+.card-header h3 {
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--text-0);
+  font-size: 1.4rem;
+}
+
+.card-desc {
+  color: var(--text-1);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.card-expanded-content {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(15, 118, 110, 0.1);
+  animation: slideDownFade 0.3s ease-out;
+}
+
+@keyframes slideDownFade {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.service-checklist {
+  list-style: none;
+  padding: 0;
+}
+
+.service-checklist li {
+  margin-bottom: 0.8rem;
+  color: var(--text-1);
+  font-size: 0.95rem;
+}
+
+.card-footer {
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--brand);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.service-path-card.remote-development { border-left: 4px solid #3b82f6; }
+.service-path-card.code-consulting { border-left: 4px solid #f59e0b; }
+.service-path-card.research-support { border-left: 4px solid #a855f7; }
+.service-path-card.coding-education { border-left: 4px solid #10b981; }
+.service-path-card.custom-delivery { border-left: 4px solid #6366f1; }
+.service-path-card.emergency-services { border-left: 4px solid #ef4444; }
+
+/* Subtle Background Tints - Light Mode */
+.service-path-card.remote-development { background: linear-gradient(135deg, #ffffff, #eff6ff); }
+.service-path-card.code-consulting { background: linear-gradient(135deg, #ffffff, #fffbeb); }
+.service-path-card.research-support { background: linear-gradient(135deg, #ffffff, #faf5ff); }
+.service-path-card.coding-education { background: linear-gradient(135deg, #ffffff, #f0fdf4); }
+.service-path-card.custom-delivery { background: linear-gradient(135deg, #ffffff, #eef2ff); }
+.service-path-card.emergency-services { background: linear-gradient(135deg, #ffffff, #fef2f2); }
+
+/* Dark Mode Overrides */
+[data-theme="dark"] .service-path-card.remote-development { background: linear-gradient(135deg, #0f172a, rgba(59, 130, 246, 0.05)); }
+[data-theme="dark"] .service-path-card.code-consulting { background: linear-gradient(135deg, #0f172a, rgba(245, 158, 11, 0.05)); }
+[data-theme="dark"] .service-path-card.research-support { background: linear-gradient(135deg, #0f172a, rgba(168, 85, 247, 0.05)); }
+[data-theme="dark"] .service-path-card.coding-education { background: linear-gradient(135deg, #0f172a, rgba(16, 185, 129, 0.05)); }
+[data-theme="dark"] .service-path-card.custom-delivery { background: linear-gradient(135deg, #0f172a, rgba(99, 102, 241, 0.05)); }
+[data-theme="dark"] .service-path-card.emergency-services { background: linear-gradient(135deg, #0f172a, rgba(239, 68, 68, 0.05)); }
+
+/* Start & End Markers */
+.path-marker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 5;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 800;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  color: var(--brand);
+}
+
+.path-marker.start {
+  margin-bottom: 3rem;
+}
+
+.path-marker.end {
+  margin-top: 3rem;
+}
+
+.marker-dot {
+  width: 24px;
+  height: 24px;
+  background: var(--brand);
+  border-radius: 50%;
+  box-shadow: 0 0 0 5px var(--bg-1), 0 0 20px var(--brand);
+  animation: pulseStart 2s infinite;
+}
+
+@keyframes pulseStart {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.marker-arrow {
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 20px solid var(--brand);
+  filter: drop-shadow(0 0 10px var(--brand));
+}
+
+@media (max-width: 900px) {
+  .path-marker {
+    align-items: flex-start;
+    padding-left: 5px;
+  }
+}
+
+@media (max-width: 900px) {
+  .zigzag-line-v {
+    left: 20px;
+    transform: none;
+  }
+  .service-path-item {
+    width: 100%;
+    padding-left: 50px !important;
+    padding-right: 0 !important;
+    left: 0 !important;
+    text-align: left !important;
+    justify-content: flex-start !important;
+  }
+  .service-path-item.left .card-header {
+    flex-direction: row;
+  }
+  .service-arrow {
+    left: 10px !important;
+    width: 30px !important;
+    justify-content: flex-end !important;
+  }
+  .service-path-item.left .arrow-head,
+  .service-path-item.right .arrow-head {
+    transform: rotate(45deg) !important;
+  }
+  .service-path-card {
+    max-width: 100%;
   }
 }
