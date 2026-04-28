@@ -1,0 +1,96 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 2rem;
+  background: transparent;
+}
+
+.login-form {
+  background: var(--surface-1, #ffffff);
+  padding: 4rem 3rem;
+  border-radius: var(--radius-lg, 20px);
+  box-shadow: var(--shadow-1, 0 20px 50px rgba(0,0,0,0.1));
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  border: 1px solid rgba(15, 118, 110, 0.15);
+  backdrop-filter: blur(15px);
+  animation: loginAppear 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes loginAppear {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.login-form h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, var(--brand), var(--brand-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.login-form p {
+  margin-bottom: 2.5rem;
+  color: var(--text-1, #666);
+  font-size: 1.1rem;
+}
+
+.form-group {
+  margin-bottom: 2rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid rgba(15, 118, 110, 0.1);
+  border-radius: 12px;
+  font-size: 1.1rem;
+  background: var(--bg-0, #f9f9f9);
+  color: var(--text-0);
+  transition: all 0.3s;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 4px var(--ring);
+}
+
+.login-button {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(45deg, var(--brand), var(--brand-2));
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 8px 20px rgba(15, 118, 110, 0.3);
+}
+
+.login-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(15, 118, 110, 0.4);
+}
+
+.error-message {
+  color: #ef4444;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  padding: 10px;
+  background: rgba(239, 68, 68, 0.1);
+  border-radius: 8px;
+}
+
+[data-theme="dark"] .login-form {
+  background: var(--surface-0);
+  border-color: rgba(78, 204, 163, 0.2);
+}
