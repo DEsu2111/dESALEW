@@ -55,7 +55,8 @@ const AdminDashboard = () => {
     } catch (err) {
       console.error('Fetch error:', err);
     } finally {
-      setLoading(false);
+      // Only set loading to false on first load
+      if (loading) setLoading(false);
     }
   };
 
@@ -136,14 +137,20 @@ const AdminDashboard = () => {
   };
 
   const updateMessageStatus = async (id, status) => {
+    // Optimistic Update: Change UI immediately
+    const previousMessages = [...messages];
+    setMessages(messages.map(m => m._id === id ? { ...m, status } : m));
+
     try {
-      await fetch(`http://localhost:5000/api/contact/${id}`, {
+      const response = await fetch(`http://localhost:5000/api/contact/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status })
       });
-      setMessages(messages.map(m => m._id === id ? { ...m, status } : m));
+      if (!response.ok) throw new Error('Failed to update');
     } catch (err) {
+      // Rollback if failed
+      setMessages(previousMessages);
       console.error(err);
     }
   };

@@ -18,18 +18,18 @@
 }
 
 [data-theme="dark"] {
-  --bg-0: #0b1224;
-  --bg-1: #0f1a30;
-  --surface-0: rgba(30, 30, 46, 0.78);
-  --surface-1: rgba(25, 25, 35, 0.92);
-  --text-0: #f0f0f0;
-  --text-1: #d0d0d0;
-  --muted: #a9b0c3;
+  --bg-0: #050a18;
+  --bg-1: #0b1224;
+  --surface-0: rgba(15, 23, 42, 0.85);
+  --surface-1: rgba(20, 30, 50, 0.95);
+  --text-0: #ffffff;
+  --text-1: #cbd5e1;
+  --muted: #94a3b8;
   --brand: #4ecca3;
   --brand-2: #a8ff78;
   --ring: rgba(78, 204, 163, 0.45);
-  --shadow-0: 0 6px 20px rgba(0, 0, 0, 0.25);
-  --shadow-1: 0 12px 35px rgba(0, 0, 0, 0.45);
+  --shadow-0: 0 10px 40px rgba(0, 0, 0, 0.4);
+  --shadow-1: 0 16px 50px rgba(0, 0, 0, 0.6);
 }
 
 * {
@@ -68,14 +68,14 @@ body::after {
   z-index: -2;
   animation: driftGlow 26s ease-in-out infinite;
   pointer-events: none;
-  opacity: 0.55;
+  opacity: 0.25;
 }
 
 body::after {
   inset: auto -25% -30% -25%;
   height: 75%;
   animation: driftGlowReverse 30s ease-in-out infinite;
-  opacity: 0.45;
+  opacity: 0.20;
 }
 
 @keyframes driftGlow {
@@ -145,8 +145,12 @@ textarea:focus-visible,
 }
 
 [data-theme="dark"] .header {
-  background: rgba(25, 25, 35, 0.9);
+  background: rgba(15, 23, 42, 0.9);
   border-bottom: 1px solid rgba(78, 204, 163, 0.15);
+}
+
+[data-theme="dark"] .hero {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(11, 18, 36, 0.95));
 }
 
 [data-theme="dark"] .nav-submenu {
@@ -327,7 +331,7 @@ textarea:focus-visible,
 
 .nav-item a:hover,
 .nav-item a.active {
-  color: #0f172a;
+  color: var(--brand);
 }
 
 .nav-item a.active::after {
@@ -336,7 +340,7 @@ textarea:focus-visible,
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(249, 250, 251, 0.92));
+  background: linear-gradient(135deg, var(--surface-1), var(--bg-0));
   color: var(--text-0);
   padding: 4rem 2rem;
   text-align: center;
@@ -388,7 +392,7 @@ textarea:focus-visible,
   font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: clamp(2.2rem, 8vw, 3.5rem);
   margin-bottom: 1.5rem;
-  background: linear-gradient(45deg, #0f172a, var(--brand));
+  background: linear-gradient(45deg, var(--text-0), var(--brand));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -2600,5 +2604,275 @@ main {
 
   .name-orbit-svg {
     animation: none !important;
+  }
+}
+
+/* Education Timeline Styles */
+.education-section {
+  padding: 8rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-header {
+  margin-bottom: 4rem;
+  text-align: left;
+}
+
+.section-header h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  color: #000000;
+  margin-bottom: 1rem;
+  font-weight: 800;
+}
+
+.section-header p {
+  color: #374151;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.timeline-content-card h3 {
+  color: #111827;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.timeline-content-card p {
+  color: #374151;
+  line-height: 1.8;
+}
+
+.education-timeline-wrapper {
+  position: relative;
+  width: 100%;
+  padding-left: 50px;
+  margin-top: 4rem;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--brand), var(--brand-2), transparent);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 4rem;
+  width: 100%;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -48px;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  background: var(--brand);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px var(--bg-1), 0 0 15px var(--brand);
+  z-index: 2;
+}
+
+.timeline-date {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  color: var(--brand);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.timeline-content-card {
+  background: var(--surface-1);
+  padding: 2.5rem;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(15, 118, 110, 0.1);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+}
+
+.timeline-content-card:hover {
+  transform: translateY(-5px) translateX(5px);
+  border-color: var(--brand);
+  box-shadow: 0 30px 60px rgba(15, 118, 110, 0.15);
+}
+
+.institution {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(15, 118, 110, 0.1);
+  padding-bottom: 1rem;
+}
+
+.school-name {
+  font-weight: 700;
+  color: var(--text-0);
+  font-size: 1.2rem;
+}
+
+.achievements {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.achievements span {
+  background: rgba(15, 118, 110, 0.12);
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--brand);
+  border: 1px solid rgba(15, 118, 110, 0.2);
+}
+
+/* Course Explorer */
+.course-explorer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+}
+
+/* Course Accordion */
+.course-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.edu-details {
+  border: 1px solid rgba(15, 118, 110, 0.1);
+  border-radius: 12px;
+  background: var(--bg-0);
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.edu-details[open] {
+  border-color: var(--brand);
+}
+
+.edu-summary {
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  font-weight: 700;
+  color: var(--text-0);
+  background: rgba(15, 118, 110, 0.05);
+}
+
+.edu-summary::-webkit-details-marker {
+  display: none;
+}
+
+.group-count {
+  font-size: 0.8rem;
+  background: var(--brand);
+  color: #111;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.edu-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 1.5rem;
+  background: var(--surface-1);
+}
+
+.tech-tag {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #334155;
+  transition: all 0.2s ease;
+}
+
+.tech-tag:hover {
+  background: var(--brand);
+  color: #111;
+  border-color: var(--brand);
+}
+
+[data-theme="dark"] .section-header h2,
+[data-theme="dark"] .timeline-content-card h3 {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .section-header p,
+[data-theme="dark"] .timeline-content-card p {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .timeline-content-card {
+  background: #0f172a !important;
+  border-color: rgba(78, 204, 163, 0.2);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+[data-theme="dark"] .timeline-content-card h3 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .timeline-content-card p {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .school-name {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .edu-summary {
+  background: rgba(15, 23, 42, 0.5);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .edu-tech-tags {
+  background: #1e293b;
+}
+
+[data-theme="dark"] .tech-tag {
+  background: rgba(78, 204, 163, 0.1);
+  border-color: rgba(78, 204, 163, 0.3);
+  color: #f1f5f9;
+}
+
+@media (max-width: 768px) {
+  .education-timeline-wrapper {
+    padding-left: 20px;
+  }
+  .timeline-line { left: 5px; }
+  .timeline-dot { left: -31px; }
+  .timeline-content-card {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+  .timeline-date {
+    font-size: 0.9rem;
+  }
+  .institution {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .edu-summary {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
   }
 }
