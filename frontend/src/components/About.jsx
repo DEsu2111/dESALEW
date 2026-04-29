@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import profilePic from '../assets/desu1.jpg';
 import { courseGroups } from '../data/education';
@@ -6,7 +6,11 @@ import { courseGroups } from '../data/education';
 const About = () => {
   return (
     <section id="about" className="about">
-      <h2>About Me</h2>
+      <div className="section-header">
+        <h2>About Me</h2>
+        <p className="about-subtitle">Full-Stack Developer & IoT Enthusiast</p>
+      </div>
+      
       <div className="about-content">
         <div className="about-card">
           <div className="about-intro">
@@ -61,7 +65,13 @@ const About = () => {
         </div>
 
         <div className="about-photo">
-          <img src={profilePic} alt="Portrait of Desalew Aleganhe" loading="lazy" />
+          <div className="photo-frame">
+            <img src={profilePic} alt="Portrait of Desalew Aleganhe" loading="lazy" />
+          </div>
+        </div>
+
+        <div className="about-cta mission-vision-cta">
+          <Link to="/mission-vision" className="cta-button primary">My Mission & Vision</Link>
         </div>
 
         <div className="education-card" id="education">
@@ -75,7 +85,7 @@ const About = () => {
           </div>
 
           <details className="education-more">
-            <summary className="education-more-btn">See more</summary>
+            <summary className="education-more-btn">Technical Courses</summary>
             <div className="education-body">
               <h4>Major Courses</h4>
               <div className="course-grid course-grid-compact">

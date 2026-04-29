@@ -17,6 +17,7 @@ import SocialLinks from './components/SocialLinks';
 import Services from './components/Services';
 import Login from './components/Login';
 import AdminDashboard from './components/AdminDashboard';
+import MissionVision from './components/MissionVision';
 
 function App() {
   const location = useLocation();
@@ -68,6 +69,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<AdminDashboard />} />
+          <Route path="/mission-vision" element={<MissionVision />} />
           {/* Catch-all route for 404 errors */}
           <Route path="*" element={<Home />} />
         </Routes>
