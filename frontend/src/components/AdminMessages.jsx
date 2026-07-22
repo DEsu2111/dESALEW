@@ -9,12 +9,14 @@ const AdminMessages = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  const API_BASE = import.meta.env.VITE_API_URL || '';
+
   const fetchMessages = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/contact');
+      const response = await fetch(`${API_BASE}/api/contact`);
       if (!response.ok) throw new Error('Failed to fetch messages');
       const data = await response.json();
-      setMessages(data);
+      setMessages(Array.isArray(data) ? data : []);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -32,7 +34,7 @@ const AdminMessages = () => {
 
   const updateStatus = async (id, newStatus) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/contact/${id}`, {
+      const response = await fetch(`${API_BASE}/api/contact/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus }),

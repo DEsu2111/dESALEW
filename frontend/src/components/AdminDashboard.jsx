@@ -42,20 +42,21 @@ const AdminDashboard = () => {
     }
   }, [navigate]);
 
+  const API_BASE = import.meta.env.VITE_API_URL || '';
+
   const fetchData = async () => {
     setLoading(true);
     try {
       const [msgRes, projRes] = await Promise.all([
-        fetch('http://localhost:5000/api/contact'),
-        fetch('http://localhost:5000/api/projects')
+        fetch(`${API_BASE}/api/contact`),
+        fetch(`${API_BASE}/api/projects`)
       ]);
       const [msgData, projData] = await Promise.all([msgRes.json(), projRes.json()]);
-      setMessages(msgData);
-      setProjects(projData);
+      setMessages(Array.isArray(msgData) ? msgData : []);
+      setProjects(Array.isArray(projData) ? projData : []);
     } catch (err) {
       console.error('Fetch error:', err);
     } finally {
-      // Only set loading to false on first load
       if (loading) setLoading(false);
     }
   };
@@ -88,8 +89,8 @@ const AdminDashboard = () => {
 
     try {
       const url = editingProject 
-        ? `http://localhost:5000/api/projects/${editingProject._id}` 
-        : 'http://localhost:5000/api/projects';
+        ? `${API_BASE}/api/projects/${editingProject._id}` 
+        : `${API_BASE}/api/projects`;
       
       const method = editingProject ? 'PUT' : 'POST';
 
@@ -115,7 +116,7 @@ const AdminDashboard = () => {
     setFormData({
       title: proj.title,
       description: proj.description,
-      technologies: proj.technologies.join(', '),
+      technologies: proj.technologies ? proj.technologies.join(', ') : '',
       liveUrl: proj.liveUrl || '',
       githubUrl: proj.githubUrl || ''
     });
@@ -125,7 +126,7 @@ const AdminDashboard = () => {
   const deleteProject = async (id) => {
     if (!window.confirm('Are you sure you want to delete this project?')) return;
     try {
-      await fetch(`http://localhost:5000/api/projects/${id}`, { method: 'DELETE' });
+      await fetch(`${API_BASE}/api/projects/${id}`, { method: 'DELETE' });
       setProjects(projects.filter(p => p._id !== id));
     } catch (err) {
       alert('Failed to delete project');
@@ -137,19 +138,17 @@ const AdminDashboard = () => {
   };
 
   const updateMessageStatus = async (id, status) => {
-    // Optimistic Update: Change UI immediately
     const previousMessages = [...messages];
     setMessages(messages.map(m => m._id === id ? { ...m, status } : m));
 
     try {
-      const response = await fetch(`http://localhost:5000/api/contact/${id}`, {
+      const response = await fetch(`${API_BASE}/api/contact/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status })
       });
       if (!response.ok) throw new Error('Failed to update');
     } catch (err) {
-      // Rollback if failed
       setMessages(previousMessages);
       console.error(err);
     }
