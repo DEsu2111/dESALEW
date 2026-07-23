@@ -60,3 +60,9 @@ temp/
 
 # Local development files
 .env.example
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
