@@ -4,6 +4,7 @@ import SocialLinks from './SocialLinks';
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
   const [status, setStatus] = useState('');
+  const [statusType, setStatusType] = useState('success'); // 'success' or 'error'
   const [submitting, setSubmitting] = useState(false);
   const API_BASE = import.meta.env.VITE_API_URL || '';
 
@@ -29,9 +30,11 @@ const Contact = () => {
         throw new Error(body.message || 'Failed to send message');
       }
 
-      setStatus('Message sent! I will get back to you soon.');
-      setFormData({ name: '', email: '', message: '' });
+      setStatusType('success');
+      setStatus('Message sent!');
+      setFormData({ name: '', email: '', phone: '', message: '' });
     } catch (err) {
+      setStatusType('error');
       setStatus(err.message || 'Something went wrong. Please try again.');
     } finally {
       setSubmitting(false);
@@ -106,7 +109,24 @@ const Contact = () => {
               {submitting ? 'Sending...' : 'Send Message'}
             </button>
           </div>
-          {status && <p className="status-text">{status}</p>}
+          {status && (
+            <div className={`status-banner ${statusType}`}>
+              {statusType === 'success' ? (
+                <div className="status-success-content">
+                  <span className="status-icon">✓</span>
+                  <div>
+                    <strong className="status-title">Message Sent!</strong>
+                    <p className="status-subtitle">Thank you! I will get back to you soon.</p>
+                  </div>
+                </div>
+              ) : (
+                <div className="status-error-content">
+                  <span className="status-icon">⚠️</span>
+                  <span>{status}</span>
+                </div>
+              )}
+            </div>
+          )}
         </form>
 
         <aside className="contact-card contact-aside">

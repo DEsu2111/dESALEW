@@ -18,7 +18,7 @@ const Navigation = () => {
       <nav className="navbar">
         <NavLink to="/" className="nav-brand" onClick={closeMenu} aria-label="Go to home">
           <img className="nav-logo" src={logoImg} alt="" aria-hidden="true" />
-          <span className="nav-brand-text">Desalew Alganeh</span>
+          <span className="nav-brand-text">Desalew Aleganh</span>
         </NavLink>
         <div
           className={`nav-toggle ${isMenuOpen ? 'open' : ''}`}
@@ -32,16 +32,20 @@ const Navigation = () => {
           <span className="bar"></span>
           <span className="bar"></span>
         </div>
+        {/* Semi-transparent Backdrop Overlay for Mobile 70% Drawer */}
+        {isMenuOpen && <div className="nav-backdrop" onClick={closeMenu}></div>}
+
         <ul className={`nav-menu ${isMenuOpen ? 'nav-menu-active' : ''}`}>
           <li className="nav-item"><NavLink to="/" onClick={closeMenu}>Home</NavLink></li>
           <li className="nav-item nav-item-services">
             <NavLink to="/services" onClick={closeMenu}>Services</NavLink>
             <ul className="nav-submenu">
-              <li><a href="/services#remote-development" onClick={closeMenu}>💻 Remote Development</a></li>
-              <li><a href="/services#coding-education" onClick={closeMenu}>📚 Coding Education</a></li>
-              <li><a href="/services#tech-consulting" onClick={closeMenu}>💡 Tech Consulting</a></li>
-              <li><a href="/services#research-support" onClick={closeMenu}>🔬 Research Support</a></li>
-              <li><a href="/services#emergency-services" onClick={closeMenu}>🚨 Emergency Services</a></li>
+              <li><a href="/services#igaming-development" onClick={closeMenu}>🎰 Real-Time iGaming Engines</a></li>
+              <li><a href="/services#multi-tenant-dashboards" onClick={closeMenu}>📊 Multi-Tenant Dashboards</a></li>
+              <li><a href="/services#financial-integrations" onClick={closeMenu}>💳 Payment Gateway Integrations</a></li>
+              <li><a href="/services#fullstack-development" onClick={closeMenu}>💻 Full-Stack Architecture</a></li>
+              <li><a href="/services#performance-optimization" onClick={closeMenu}>⚡ Latency & Performance</a></li>
+              <li><a href="/services#code-consulting" onClick={closeMenu}>💡 Tech Consulting</a></li>
             </ul>
           </li>
           <li className="nav-item nav-item-about">
@@ -50,13 +54,14 @@ const Navigation = () => {
               <li><NavLink to="/education" onClick={closeMenu}>🎓 Education</NavLink></li>
               <li><NavLink to="/certificates" onClick={closeMenu}>🏅 Certificates</NavLink></li>
               <li><NavLink to="/references" onClick={closeMenu}>🔗 References</NavLink></li>
+              <li><NavLink to="/mission-vision" onClick={closeMenu}>🎯 Mission & Vision</NavLink></li>
             </ul>
           </li>
           <li className="nav-item"><NavLink to="/projects" onClick={closeMenu}>Projects</NavLink></li>
           <li className="nav-item nav-item-skills">
             <NavLink to="/skills" onClick={closeMenu}>Skills</NavLink>
             <ul className="nav-submenu">
-              <li><NavLink to="/experience" onClick={closeMenu}>💼 Experience</NavLink></li>
+              <li><NavLink to="/experience" onClick={closeMenu}>💼 Work Experience</NavLink></li>
               <li><NavLink to="/references" onClick={closeMenu}>🔗 References</NavLink></li>
             </ul>
           </li>

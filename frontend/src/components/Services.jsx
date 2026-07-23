@@ -1,100 +1,128 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const serviceGroups = [
   {
-    id: 'remote-development',
-    title: 'Remote Development',
+    id: 'igaming-development',
+    title: 'Real-Time iGaming & Web Game Engines',
+    icon: '🎰',
+    valueBadge: 'Core Specialty',
+    outcome: 'Ultra-low latency, server-authoritative multiplayer web games.',
+    description: 'Specialized architecture and development of socket-driven web games including Bingo, Keno, Aviator crash games, and Chicken Road mechanics with continuous game loops.',
+    items: [
+      'WebSocket & Socket.IO real-time state synchronization optimized for minimal network payload',
+      'Server-authoritative game logic ensuring strict security and anti-cheat validation',
+      'Redis Sentinel/Cluster in-memory state tracking & high-speed session management',
+      'Custom HTML5 Canvas 2D rendering engines and mathematical crash curve generation',
+      'Dynamic risk assessment mechanics and high-concurrency tick loop execution',
+    ],
+  },
+  {
+    id: 'multi-tenant-dashboards',
+    title: 'Multi-Tenant Operator Dashboards',
+    icon: '📊',
+    valueBadge: 'Enterprise',
+    outcome: 'Unified control panels for multi-operator platform management.',
+    description: 'Building robust, isolated multi-tenant management portals for platform owners and third-party operators to track real-time analytics and configure game rules.',
+    items: [
+      'Multi-tenant database architecture with isolated game data per operator',
+      'Real-time financial reporting, transaction logging, and player analytics',
+      'Granular platform permission hierarchies and Role-Based Access Control (RBAC)',
+      'Remote game rule configuration, RTP settings, and payout controls',
+      'Interactive React & Node.js/PostgreSQL administrative interfaces',
+    ],
+  },
+  {
+    id: 'financial-integrations',
+    title: 'Payment Gateway & Wallet Integrations',
+    icon: '💳',
+    valueBadge: 'Financial Grade',
+    outcome: 'Instant balance updates, automated bet validation, and secure payouts.',
+    description: 'Integrating resilient financial flows and local payment services for seamless instant deposits, bet validation, and wallet balance updates.',
+    items: [
+      'Direct integration with Telebirr, M-PESA, and local mobile money gateways',
+      'Double-entry transaction logging to ensure 100% financial data integrity',
+      'Automated webhook handlers with signature verification and replay attack prevention',
+      'Real-time wallet balance synchronization over WebSockets',
+      'Resilient retry mechanisms for high-volume transaction processing',
+    ],
+  },
+  {
+    id: 'fullstack-development',
+    title: 'Full-Stack Web Architecture',
     icon: '💻',
     valueBadge: 'High Impact',
-    outcome: 'Accelerate your product roadmap with elite engineering.',
-    description: 'Architecting and building high-performance, scalable web applications, or seamlessly integrating with your remote team to accelerate feature delivery.',
+    outcome: 'Accelerate your product roadmap with modern full-stack engineering.',
+    description: 'Designing and building high-performance scalable web applications using TypeScript, React, Next.js, Bun, Hono, Node.js, and Laravel.',
     items: [
-      'End-to-end custom web application architecture and development',
-      'Scalable RESTful & GraphQL API design and seamless third-party integrations',
-      'Legacy codebase modernization, refactoring, and deep code optimization',
-      'Responsive, pixel-perfect frontend implementation (React, modern CSS)',
-      'Agile workflow integration (GitHub, Jira, Slack) for seamless remote collaboration',
+      'End-to-end custom web application architecture and API development',
+      'High-performance backend API design (RESTful, GraphQL, WebSocket)',
+      'Database schema design, indexing, and query optimization (PostgreSQL, MySQL, MongoDB)',
+      'Modern, responsive, pixel-perfect glassmorphism UI/UX implementation',
+      'Docker containerization and production deployment configuration',
+    ],
+  },
+  {
+    id: 'performance-optimization',
+    title: 'Latency & Performance Optimization',
+    icon: '⚡',
+    valueBadge: 'Optimization',
+    outcome: 'Eliminate network bottlenecks and reduce server response times.',
+    description: 'In-depth code profiling, network packet size reduction, and caching strategies to ensure your app handles high concurrent traffic smoothly.',
+    items: [
+      'Socket packet minimization and binary protocol optimization',
+      'Redis caching strategy implementation to remove database bottlenecks',
+      'Frontend rendering performance optimization (Canvas API, React re-renders)',
+      'Code audit, security vulnerability assessment, and refactoring',
+      'System hardening for high-concurrency event loops',
     ],
   },
   {
     id: 'code-consulting',
-    title: 'Tech Consulting & Advisory',
+    title: 'Tech Consulting & Architecture Advisory',
     icon: '💡',
     valueBadge: 'Strategic',
-    outcome: 'Minimize technical debt and maximize ROI.',
-    description: 'Strategic technical guidance to ensure your project is built on the right foundation. Avoid costly mistakes by planning the optimal tech stack and architecture first.',
+    outcome: 'Minimize technical debt and choose the right tech stack from day one.',
+    description: 'Strategic technical guidance for iGaming startups, SaaS platforms, and enterprise projects to ensure optimal architecture and scalability.',
     items: [
-      'Comprehensive project feasibility analysis and technical risk assessment',
-      'Strategic technology stack recommendations tailored to your business goals',
-      'Scalable system architecture and robust database design planning',
-      'Accurate cost estimation and realistic development timeline projection',
-      'In-depth code reviews, performance profiling, and security audits',
-    ],
-  },
-  {
-    id: 'research-support',
-    title: 'Research & Development Support',
-    icon: '🔬',
-    valueBadge: 'Innovation',
-    outcome: 'Turn complex theoretical ideas into functional prototypes.',
-    description: 'Transforming theoretical concepts into functional realities. Specialized engineering support for complex algorithms, academic projects, and cutting-edge prototypes.',
-    items: [
-      'Technical research assistance and feasibility studies for novel ideas',
-      'Rapid proof-of-concept (PoC) and Minimum Viable Product (MVP) development',
-      'Complex algorithm design, implementation, and performance optimization',
-      'Engineering guidance and practical implementation support for academic research',
-      'Hardware-software integration and IoT system prototyping',
-    ],
-  },
-  {
-    id: 'coding-education',
-    title: 'Coding Education',
-    icon: '📚',
-    valueBadge: 'Empowering',
-    outcome: 'Go from zero to building full-stack applications.',
-    description: 'Empowering the next generation of developers through personalized, 1-on-1 mentorship. A practical, project-based curriculum designed to take you from beginner to job-ready.',
-    items: [
-      'Highly personalized 1-on-1 coding lessons adapted to your learning pace',
-      'Custom-tailored curriculum focusing on modern, in-demand tech stacks',
-      'Hands-on, project-based learning to build a real-world, impressive portfolio',
-      'Career guidance, technical interview preparation, and resume review',
-      'Flexible scheduling with interactive live online sessions and screen sharing',
-    ],
-  },
-  {
-    id: 'custom-delivery',
-    title: 'Custom Code Delivery',
-    icon: '⚡',
-    valueBadge: 'On-Demand',
-    outcome: 'Get specific, high-quality components delivered instantly.',
-    description: 'Delivering tailored, ready-to-deploy software components. Whether you need an automation script, a complex database query, or a complete UI component, I provide drop-in solutions.',
-    items: [
-      'Automated scripting for data processing and business workflow optimization',
-      'Bespoke website templates, landing pages, and reusable UI/UX components',
-      'Complex database schema design and highly optimized SQL/NoSQL queries',
-      'Mobile-first, highly responsive, and accessible design implementation',
-      'Performance bottleneck identification and rapid system optimization',
-    ],
-  },
-  {
-    id: 'emergency-services',
-    title: 'Emergency Services',
-    icon: '🚨',
-    valueBadge: 'Critical',
-    outcome: 'Restore operations and minimize downtime in hours, not days.',
-    description: 'Immediate, high-priority intervention when production systems fail. Rapid debugging, hotfixes, and critical incident response to minimize downtime and restore operations.',
-    items: [
-      'Immediate, priority response for critical production outages and system failures',
-      'Rapid root-cause analysis and deployment of secure, stable emergency hotfixes',
-      'Unblocking development pipelines and resolving critical deployment/build errors',
-      'Data recovery assistance and database state correction interventions',
-      'Detailed post-mortem analysis and system hardening to prevent future recurrence',
+      'Comprehensive project feasibility analysis and real-time architecture design',
+      'Tech stack evaluation (TypeScript vs Go/Bun, Redis clustering, PostgreSQL design)',
+      'Development timeline estimation and milestone planning',
+      'Technical mentorship and code review for engineering teams',
     ],
   },
 ];
 
 const Services = () => {
   const [openId, setOpenId] = useState(null);
+  const [highlightId, setHighlightId] = useState(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const targetId = location.hash.replace('#', '');
+      const matched = serviceGroups.find((s) => s.id === targetId);
+      if (matched) {
+        setOpenId(targetId);
+        setHighlightId(targetId);
+
+        // Smooth scroll after state update
+        setTimeout(() => {
+          const el = document.getElementById(targetId);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 120);
+
+        // Remove glow highlight after 2.5 seconds
+        const timer = setTimeout(() => {
+          setHighlightId(null);
+        }, 2500);
+
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [location.hash]);
 
   return (
     <section id="services" className="services-interactive">
@@ -114,10 +142,12 @@ const Services = () => {
         {serviceGroups.map((service, index) => {
           const isEven = index % 2 === 0;
           const isOpen = openId === service.id;
+          const isHighlighted = highlightId === service.id;
 
           return (
             <div 
               key={service.id} 
+              id={service.id}
               className={`service-path-item ${isEven ? 'left' : 'right'} ${isOpen ? 'active' : ''}`}
             >
               <div className="service-step-number">{index + 1}</div>
@@ -127,7 +157,7 @@ const Services = () => {
               </div>
               
               <div 
-                className={`service-path-card ${service.id}`} 
+                className={`service-path-card ${service.id} ${isHighlighted ? 'service-card-pulse' : ''}`} 
                 onClick={() => setOpenId(isOpen ? null : service.id)}
               >
                 <div className="card-badge-row">

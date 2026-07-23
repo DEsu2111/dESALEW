@@ -9,80 +9,47 @@ const Skills = () => {
   };
   const skillGroups = [
     {
-      title: 'Advanced Computer Skills',
+      title: 'Real-Time & High-Performance Stack',
       items: [
-        'Microsoft Office Suite (Word, Excel, PowerPoint & Outlook)',
-        'Google Workspace (Docs, Sheets, Slides, Forms, Drive)',
-        'ChatGPT and other AI productivity tools',
-        'Git, GitHub (Version control and collaboration)',
-        'VS Code (Development environments)',
+        'TypeScript, React, Socket.IO, Bun, Hono, Node.js',
+        'WebSocket protocol optimization & real-time state synchronization',
+        'Low latency, high-concurrency game loop architecture',
       ],
     },
     {
-      title: 'Computer Maintenance Skills',
+      title: 'Database & Caching',
       items: [
-        'Installing and configuring Windows & Linux operating systems',
-        'Troubleshooting hardware and software issues (desktop, pc & network)',
-        'Virus removal and PC performance optimization',
-        'Installation of drivers, office programs & common utilities',
-        'Preventive maintenance and system backup techniques',
+        'PostgreSQL, Redis (Sentinel / Cluster), SQL, MongoDB',
+        'In-memory state tracking & high-speed session storage',
       ],
     },
     {
-      title: 'Web Programming',
+      title: 'Frontend & UI Engineering',
       items: [
-        'Frontend: Blade, JavaScript, Vanilla JS, Tailwind CSS, React, Next.js',
-        'Backend: PHP, Laravel, Node.js, Nest.js, Django',
-        'Database: MySQL, MongoDB, PostgreSQL',
-        'Building and maintaining dynamic websites and forms',
-        'Responsive design principles for mobile-friendly development',
-        'Understanding of web hosting and local server environments',
+        'Next.js, Vite, Tailwind CSS, HTML5, CSS3, Canvas API',
+        'Custom 2D rendering & crash curve math engine development',
       ],
     },
     {
-      title: 'Project Management Tools',
-      items: ['Jira, ClickUp'],
-    },
-    {
-      title: 'Circuit Design & Analysis',
-      items: ['Analog & Digital Electronics', 'Circuit simulation using Multisim and Breadboard'],
-    },
-    {
-      title: 'Embedded System & Microcontrollers',
-      items: ['Portus and PIC microcontroller', 'Interfacing sensors, actuators, and displays'],
-    },
-    {
-      title: 'Network & Communication System',
+      title: 'DevOps & Tools',
       items: [
-        'Network fundamentals (IP addressing, routing)',
-        'Wireless communication basics (modulation, transmission)',
-        'IOT protocols and sensor networks',
+        'Docker, Git / GitHub, REST APIs',
+        'Linux System Configuration & Environment Customization',
       ],
     },
     {
-      title: 'Project Development & Documentation',
-      items: ['Schematic and PCB design', 'Technical documentation and reporting', 'Team collaboration using Git/GitHub'],
-    },
-    {
-      title: 'Computer Programming',
-      items: ['Familiar with C, C++ and Python'],
-    },
-    {
-      title: 'Design',
-      items: ['Figma, Balasmiq, Adobe Photoshop/Illustrator'],
-    },
-    {
-      title: 'Software Development',
+      title: 'Financial & Multi-Tenant Integrations',
       items: [
-        'UI Design and evaluation',
-        'Software design specification with UML',
-        'Software design lifecycle',
-        'Design patterns',
+        'Telebirr, M-PESA payment integration for balance updates',
+        'Multi-tenant operator dashboards & permission hierarchies',
       ],
     },
     {
-      title: 'Operating Systems',
-      items: ['Windows, Mac, Linux'],
+      title: 'Embedded Systems & Hardware',
+      items: [
+        'Circuit simulation (Multisim, Breadboard), Proteus & PIC microcontrollers',
+        'Analog & Digital Electronics, IoT protocol basics',
+      ],
     },
   ];
 
@@ -120,9 +87,10 @@ const Skills = () => {
         <div className="skills-card">
           <h3>Language Proficiency</h3>
           <ul>
-            <li>English - Excellent communication and writing skills</li>
-            <li>Amharic - Mother tongue</li>
-            <li>Agewagna - Mother tongue</li>
+            <li><strong>Amharic</strong> — Native</li>
+            <li><strong>English</strong> — Professional</li>
+            <li><strong>Agewagna</strong> — Native</li>
+            <li><strong>Japanese</strong> — Basic</li>
           </ul>
         </div>
 

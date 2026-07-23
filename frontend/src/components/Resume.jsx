@@ -20,13 +20,14 @@ const Resume = () => {
 
           <h3>Contact Information</h3>
           <div className="contact-details">
-            <p><strong>Full Name:</strong> Desalew Aleganhe</p>
-            <p><strong>Location:</strong> Addis Ababa, ET</p>
+            <p><strong>Full Name:</strong> Desalew Aleganh Yeneanat</p>
+            <p><strong>Specialization:</strong> Full-Stack Engineer — iGaming & Real-Time Systems</p>
+            <p><strong>Location:</strong> Addis Ababa, Ethiopia</p>
             <p><strong>Email:</strong> <a href="mailto:desu6262@gmail.com">desu6262@gmail.com</a></p>
-            <p><strong>Phone:</strong> +251-9626-22111 | +251-5517-2057</p>
+            <p><strong>Phone:</strong> 0962622111 / 0955172057</p>
             <p><strong>Telegram:</strong> <a href="https://t.me/desu6262" target="_blank" rel="noopener noreferrer">@desu6262</a></p>
             <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/desalew-aleganeh" target="_blank" rel="noopener noreferrer">in/desalew-aleganeh</a></p>
-            <p><strong>GitHub:</strong> <a href="https://github.com/DEsu2111" target="_blank" rel="noopener noreferrer">dESALEW</a></p>
+            <p><strong>GitHub:</strong> <a href="https://github.com/DEsu2111" target="_blank" rel="noopener noreferrer">github.com/DEsu2111</a></p>
           </div>
         </div>
       </div>

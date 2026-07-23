@@ -6,13 +6,23 @@ const Experience = () => {
       <h2>Work Experience</h2>
       <div className="experience-content">
         <div className="experience-item">
-          <h3>Game Developing</h3>
-          <p><strong>Position:</strong> Full Stack Developer<br />
-            <strong>Duration:</strong> February 1, 2026 -- Present | Addis Ababa, Ethiopia (Remote)</p>
+          <h3>Full-Stack iGaming Developer</h3>
+          <p><strong>Company:</strong> Independent Production Frameworks<br />
+            <strong>Duration:</strong> 2025 – Present (Active) | Addis Ababa, Ethiopia</p>
           <ul>
-            <li>Building a Bingo game platform as a full-stack developer.</li>
-            <li>Developing internal dashboards and admin tooling for game operations.</li>
-            <li>Collaborating with a remote team across multiple projects under NDA constraints.</li>
+            <li>Actively developing and maintaining production-grade, fully functioning real-time web games including Bingo, Keno, Aviator, and Chicken Road architectures.</li>
+            <li>Architected unified, multi-tenant operator dashboards allowing isolated multi-game database management, deep user analytics, and platform permission hierarchies.</li>
+            <li>Optimized real-time state synchronization over WebSocket protocols using Socket.IO, minimizing network packet size to preserve performance under high concurrent loads.</li>
+            <li>Utilized Redis for in-memory game state tracking, high-speed connection session storage, and data caching to prevent database bottlenecks.</li>
+            <li>Integrated resilient financial flows and local payment options (Telebirr, M-PESA) for instantaneous balance updates and bet validation.</li>
+          </ul>
+        </div>
+
+        <div className="experience-item">
+          <h3>Engineering Intern</h3>
+          <p><strong>Duration:</strong> March 2025 – June 2025 | Addis Ababa, Ethiopia</p>
+          <ul>
+            <li>Acquired practical hardware/software training and system architecture foundations as part of the Computer Engineering path.</li>
           </ul>
         </div>
 

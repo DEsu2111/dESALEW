@@ -8,29 +8,30 @@ const About = () => {
     <section id="about" className="about">
       <div className="section-header">
         <h2>About Me</h2>
-        <p className="about-subtitle">Full-Stack Developer & IoT Enthusiast</p>
+        <p className="about-subtitle">Full-Stack Engineer — iGaming & Real-Time Systems</p>
       </div>
       
       <div className="about-content">
         <div className="about-card">
           <div className="about-intro">
-            <h3>Summary</h3>
+            <h3>Professional Summary</h3>
             <p className="about-lede">
-              I am an Electrical & Computer Engineering graduate with a strong interest in programming and electronics.
-              I enjoy working with both hardware and software, including electronics systems, networking, and coding.
-              I am a motivated problem solver with strong analytical and communication skills, eager to apply my knowledge
-              to real-world projects that make a meaningful impact.
+              Electrical and Computer Engineering graduate specialized in designing, optimizing, and maintaining fully
+              functioning <strong>iGaming platforms</strong>. Hands-on expertise building socket-driven web games where real-time
+              synchronization, low latency, and state persistence are critical.
             </p>
             <p className="about-lede">
-              Currently, I work as a full-stack developer at Game Developing, contributing to a Bingo game platform,
-              operational dashboards, and other remote projects with a distributed team.
+              Experienced in leading full-stack implementations—from high-performance backend real-time architecture to interactive
+              client-side interfaces and unified multi-tenant dashboards.
             </p>
             <div className="about-chips" aria-label="Key strengths">
-              <span className="about-chip">Full-stack</span>
-              <span className="about-chip">React</span>
-              <span className="about-chip">Node/Laravel</span>
-              <span className="about-chip">Networking</span>
-              <span className="about-chip">Electronics</span>
+              <span className="about-chip">iGaming</span>
+              <span className="about-chip">TypeScript</span>
+              <span className="about-chip">Socket.IO</span>
+              <span className="about-chip">React & Next.js</span>
+              <span className="about-chip">Bun & Hono</span>
+              <span className="about-chip">Redis & Postgres</span>
+              <span className="about-chip">Docker</span>
             </div>
           </div>
 
@@ -39,7 +40,7 @@ const About = () => {
           <dl className="about-meta">
             <div className="about-meta-row">
               <dt>Location</dt>
-              <dd>Addis Ababa, ET</dd>
+              <dd>Addis Ababa, Ethiopia</dd>
             </div>
             <div className="about-meta-row">
               <dt>Email</dt>
@@ -47,7 +48,7 @@ const About = () => {
             </div>
             <div className="about-meta-row">
               <dt>Phone</dt>
-              <dd>+251-9626-22111 | +251-5517-2057</dd>
+              <dd>0962622111 / 0955172057</dd>
             </div>
             <div className="about-meta-row">
               <dt>Telegram</dt>
@@ -59,14 +60,14 @@ const About = () => {
             </div>
             <div className="about-meta-row">
               <dt>GitHub</dt>
-              <dd><a className="icon-link" href="https://github.com/DEsu2111" target="_blank" rel="noopener noreferrer">dESALEW</a></dd>
+              <dd><a className="icon-link" href="https://github.com/DEsu2111" target="_blank" rel="noopener noreferrer">DEsu2111</a></dd>
             </div>
           </dl>
         </div>
 
         <div className="about-photo">
           <div className="photo-frame">
-            <img src={profilePic} alt="Portrait of Desalew Aleganhe" loading="lazy" />
+            <img src={profilePic} alt="Portrait of Desalew Aleganh Yeneanat" loading="lazy" />
           </div>
         </div>
 
@@ -78,10 +79,10 @@ const About = () => {
           <div className="education-head">
             <h3>Education</h3>
             <p className="education-subhead">
-              <strong>Hawassa University</strong> - B.Sc. Electrical and Computer Engineering (IoT Specialization)
-              <span className="education-muted"> | October 2019 - June 2025</span>
+              <strong>Hawassa University</strong> - B.Sc. in Electrical and Computer Engineering (Computer Stream)
+              <span className="education-muted"> | Class of 2025</span>
             </p>
-            <p className="education-muted">Highest Semester GPA: 3.85 | CGPA: 3.5</p>
+            <p className="education-muted">CGPA: 3.6 / 4.0</p>
           </div>
 
           <details className="education-more">

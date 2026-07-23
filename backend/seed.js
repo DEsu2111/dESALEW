@@ -17,17 +17,31 @@ mongoose.connect(MONGODB_URI, {
 // Sample projects data based on Betsegaw's experience
 const projects = [
   {
-    title: "Fellowship Management System (Saas)",
-    description: "Production Level SaaS for all University fellowships to manage members, events, and resources.",
-    technologies: ["Laravel", "MySQL", "Tailwind CSS", "vanila js", "Blade"],
-    liveUrl: "http://fellow-managemnt-system.ct.ws/public/",
-    githubUrl: ""
+    title: "Fast Bingo, Keno & Chicken Road Platforms",
+    description: "Fully functional multiplayer games engineered with continuous loops, quick tick speeds, dynamic risk assessment mechanics, and strict server-authoritative state security.",
+    technologies: ["TypeScript", "React", "Socket.IO", "Redis", "PostgreSQL"],
+    githubUrl: "https://github.com/DEsu2111",
+    liveUrl: ""
   },
   {
-    title: "Hawassa Fellowship Management System",
-    description: "Test Level system for Hawassa University fellowship activities and member tracking.",
-    technologies: ["Laravel", "MySQL", "Tailwind CSS", "Blade"],
-    liveUrl: "https://hufellow.ct.ws/",
+    title: "Aviator System & Custom Canvas Engine",
+    description: "Implemented mathematical crash curve generations mapping accurate ticks over hundreds of simultaneous connected socket instances instantly.",
+    technologies: ["TypeScript", "React", "Canvas API", "Socket.IO", "Node.js"],
+    githubUrl: "https://github.com/DEsu2111",
+    liveUrl: ""
+  },
+  {
+    title: "Multi-Tenant Game Management Dashboard",
+    description: "Comprehensive operations control board built to handle distinct third-party operators, aggregate financial data reporting, and handle individual game logic rules configurations remotely.",
+    technologies: ["React", "Node.js", "PostgreSQL", "Docker", "Redis"],
+    githubUrl: "https://github.com/DEsu2111",
+    liveUrl: ""
+  },
+  {
+    title: "Fellowship Management System (SaaS)",
+    description: "Production Level SaaS for all University fellowships to manage members, events, and resources.",
+    technologies: ["Laravel", "MySQL", "Tailwind CSS", "Vanilla JS", "Blade"],
+    liveUrl: "http://fellow-managemnt-system.ct.ws/public/",
     githubUrl: ""
   },
   {
@@ -57,27 +71,6 @@ const projects = [
     technologies: ["PHP", "MySQL", "Tailwind CSS", "Vanilla JS"],
     liveUrl: "https://school-systems.ct.ws/",
     githubUrl: ""
-  },
-  {
-    title: "Hospital Management System",
-    description: "Internship project: Managed patient records, doctor schedules, and billing information.",
-    technologies: ["Laravel", "MySQL", "Tailwind CSS", "Vanilla JS"],
-    githubUrl: "https://github.com/flybet-code/hms",
-    liveUrl: ""
-  },
-  {
-    title: "Ketero Appointment Scheduling",
-    description: "Semester project: Web-based platform to streamline scheduling between clients and service providers.",
-    technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
-    githubUrl: "https://github.com/flybet-code/appointment",
-    liveUrl: ""
-  },
-  {
-    title: "Asgard Tour Guidance",
-    description: "Semester project: Web-based system designed to simplify travel planning and attraction browsing.",
-    technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
-    githubUrl: "https://github.com/flybet-code/Asgard-Tour-",
-    liveUrl: ""
   }
 ];
 
