@@ -167,6 +167,7 @@
   color: var(--dash-muted);
   padding: 0 0.75rem 0.35rem;
   display: block;
+  -webkit-user-select: none;
   user-select: none;
   opacity: 0.85;
 }
@@ -523,6 +524,7 @@
   gap: 0.65rem;
   font-size: 0.92rem;
   font-weight: 600;
+  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -874,6 +876,7 @@
   align-items: center;
   gap: 5px;
   margin-right: 0.2rem;
+  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -1405,16 +1408,16 @@
 .proj-thumb-overlay-badges .proj-badge {
   margin-bottom: 0;
   background: rgba(11, 15, 23, 0.78);
-  backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: #ffffff;
 }
 
 .proj-img-count-badge {
   background: rgba(11, 15, 23, 0.78);
-  backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   color: #f1f5f9;
   border: 1px solid rgba(255, 255, 255, 0.14);
   padding: 4px 9px;
@@ -1735,6 +1738,7 @@
   padding: 4px 8px;
   border-radius: 8px;
   transition: all 0.15s ease;
+  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -1794,6 +1798,7 @@
 }
 
 .chart-axis-text {
+  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -2397,6 +2402,7 @@
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.7);
+  -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   display: flex;
   justify-content: center;
@@ -2621,8 +2627,8 @@
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
   display: flex;
   align-items: center;
   justify-content: center;

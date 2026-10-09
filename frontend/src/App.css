@@ -129,6 +129,7 @@ textarea:focus-visible,
 /* Header Styles */
 .header {
   background: rgba(241, 245, 249, 0.94);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   box-shadow: var(--shadow-0);
   position: sticky;
@@ -178,6 +179,7 @@ textarea:focus-visible,
   align-items: center;
   gap: 0.75rem;
   text-decoration: none;
+  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -514,6 +516,7 @@ textarea:focus-visible,
   line-height: 1;
   margin-left: 2px;
   animation: typewriterCursorBlink 0.8s infinite;
+  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -632,6 +635,7 @@ textarea:focus-visible,
   color: var(--text-1);
   border: 1px solid rgba(255, 255, 255, 0.12);
   transition: all 0.25s ease;
+  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -665,6 +669,7 @@ textarea:focus-visible,
   padding: 0;
   overflow: hidden;
   transition: all 0.4s ease;
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(17, 24, 39, 0.08);
   height: 100%;
@@ -707,6 +712,7 @@ textarea:focus-visible,
   background: rgba(15, 23, 42, 0.88);
   color: #ff5959;
   border: 1px solid rgba(232, 69, 69, 0.3);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
   z-index: 2;
@@ -724,8 +730,8 @@ textarea:focus-visible,
   background: rgba(15, 23, 42, 0.88);
   color: #f1f5f9;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
   z-index: 2;
   display: inline-flex;
@@ -773,8 +779,8 @@ textarea:focus-visible,
   top: 50%;
   transform: translateY(-50%);
   background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.15);
   width: 28px;
@@ -814,8 +820,8 @@ textarea:focus-visible,
   left: 50%;
   transform: translateX(-50%) translateY(8px);
   background: rgba(15, 23, 42, 0.88);
-  backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #f1f5f9;
   padding: 0.32rem 0.8rem;
@@ -902,8 +908,8 @@ textarea:focus-visible,
   inset: 0;
   z-index: 100000;
   background: rgba(5, 8, 16, 0.95);
-  backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -948,6 +954,7 @@ textarea:focus-visible,
   overflow: hidden;
   box-shadow: 0 25px 80px rgba(0, 0, 0, 0.95);
   background: #000000;
+  -webkit-user-select: none;
   user-select: none;
   touch-action: pan-y;
 }
@@ -959,6 +966,7 @@ textarea:focus-visible,
   width: auto;
   height: auto;
   object-fit: contain;
+  -webkit-user-select: none;
   user-select: none;
   -webkit-user-drag: none;
 }
@@ -1027,8 +1035,8 @@ textarea:focus-visible,
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   transition: all 0.2s ease;
   flex-shrink: 0;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
@@ -1050,8 +1058,8 @@ textarea:focus-visible,
   height: 50px;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.52);
-  backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.25);
   color: #ffffff;
   font-size: 2.2rem;
@@ -1176,8 +1184,8 @@ textarea:focus-visible,
   background: rgba(0, 0, 0, 0.45) !important;
   padding: 0.3rem 0.95rem;
   border-radius: 999px;
-  backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.15) !important;
   display: inline-flex;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
@@ -1454,8 +1462,8 @@ textarea:focus-visible,
   border: none !important;
   border-color: transparent !important;
   border-radius: 0;
-  backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
   box-shadow: none !important;
   text-align: center;
   width: 100%;
@@ -1696,6 +1704,7 @@ textarea:focus-visible,
   padding: 1.8rem;
   box-shadow: var(--shadow-0);
   border: 1px solid rgba(232, 69, 69, 0.14);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
@@ -1805,6 +1814,7 @@ textarea:focus-visible,
   padding: 1.8rem;
   box-shadow: var(--shadow-0);
   border: 1px solid rgba(17, 24, 39, 0.08);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 
@@ -1937,6 +1947,7 @@ textarea:focus-visible,
   padding: 1.8rem;
   box-shadow: var(--shadow-0);
   border: 1px solid rgba(232, 69, 69, 0.14);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
@@ -2076,6 +2087,7 @@ textarea:focus-visible,
   margin-bottom: 1.8rem;
   box-shadow: var(--shadow-0);
   border: 1px solid rgba(17, 24, 39, 0.08);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -2308,6 +2320,7 @@ textarea:focus-visible,
 }
 
 .contact-info {
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   width: 100%;
   margin: 0;
@@ -2816,7 +2829,8 @@ textarea:focus-visible,
     width: 100%;
     height: 100vh;
     background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2892,7 +2906,8 @@ textarea:focus-visible,
     transform: translateX(-100%);
     box-shadow: var(--shadow-0);
     padding: 2rem 0;
-    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
     z-index: 99;
     max-height: calc(100vh - 64px);
     overflow-y: auto;
@@ -3043,7 +3058,8 @@ textarea:focus-visible,
     padding: 0.46rem 0.95rem !important;
     font-size: 0.82rem !important;
     border-radius: 999px !important;
-    user-select: none !important;
+    -webkit-user-select: none !important;
+  user-select: none !important;
   }
 
   .filter-count-chip {
@@ -3825,6 +3841,7 @@ main {
   padding: 1px;
   background: linear-gradient(135deg, rgba(232, 69, 69, 0.35), rgba(255, 89, 89, 0.12), transparent 60%);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
