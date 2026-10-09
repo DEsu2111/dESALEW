@@ -1,15 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const Skills = () => {
-  const [openId, setOpenId] = useState('Web Programming');
-
-  const toggleOpen = (title) => {
-    setOpenId((current) => (current === title ? '' : title));
-  };
-  const skillGroups = [
-    {
-      title: 'Advanced Computer Skills',
+const DEFAULT_SKILL_GROUPS = [
+  {
+    title: 'Advanced Computer Skills',
       items: [
         'Microsoft Office Suite (Word, Excel, PowerPoint & Outlook)',
         'Google Workspace (Docs, Sheets, Slides, Forms, Drive)',
@@ -85,6 +79,26 @@ const Skills = () => {
       items: ['Windows, Mac, Linux'],
     },
   ];
+
+const Skills = () => {
+  const [skillGroups, setSkillGroups] = useState(() => {
+    try {
+      const saved = localStorage.getItem('adminSkillsList');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch (e) {}
+    return DEFAULT_SKILL_GROUPS;
+  });
+
+  const [openId, setOpenId] = useState(() => {
+    return skillGroups.length > 0 ? skillGroups[0].title : '';
+  });
+
+  const toggleOpen = (title) => {
+    setOpenId((current) => (current === title ? '' : title));
+  };
 
   return (
     <section id="skills" className="about">

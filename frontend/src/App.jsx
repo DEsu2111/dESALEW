@@ -13,48 +13,58 @@ import References from './components/References';
 import Resume from './components/Resume';
 import Contact from './components/Contact';
 import RotatingName from './components/RotatingName';
-import SocialLinks from './components/SocialLinks';
 import Services from './components/Services';
 import Login from './components/Login';
 import AdminDashboard from './components/AdminDashboard';
 import MissionVision from './components/MissionVision';
+import Footer from './components/Footer';
 
 function App() {
   const location = useLocation();
-  const [theme, setTheme] = useState('dark');
+  const [themeMode, setThemeMode] = useState(() => {
+    return localStorage.getItem('themeMode') || 'dark';
+  });
 
   useEffect(() => {
-    const saved = localStorage.getItem('theme');
-    const initial = saved || 'dark';
-    setTheme(initial);
-    document.documentElement.setAttribute('data-theme', initial);
-  }, []);
+    const applyTheme = (mode) => {
+      let resolved = mode;
+      if (mode === 'system') {
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        resolved = prefersDark ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', resolved);
+      document.documentElement.setAttribute('data-theme-mode', mode);
+      localStorage.setItem('theme', resolved);
+      localStorage.setItem('themeMode', mode);
+    };
+
+    applyTheme(themeMode);
+
+    if (themeMode === 'system' && window.matchMedia) {
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const handleChange = () => applyTheme('system');
+      mediaQuery.addEventListener('change', handleChange);
+      return () => mediaQuery.removeEventListener('change', handleChange);
+    }
+  }, [themeMode]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [location.pathname]);
 
   const toggleTheme = () => {
-    const next = theme === 'dark' ? 'light' : 'dark';
-    setTheme(next);
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
+    const next = themeMode === 'system' ? 'light' : themeMode === 'light' ? 'dark' : 'system';
+    setThemeMode(next);
   };
 
-  return (
-    <div className="App">
-      <Navigation />
-      <RotatingName />
-      <button
-        type="button"
-        className="theme-toggle"
-        onClick={toggleTheme}
-        aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-      >
-        <span className="theme-toggle-icon" aria-hidden="true">☼</span>
-      </button>
+  const isDashboard = location.pathname.toLowerCase().startsWith('/dash');
 
-      <main>
+  return (
+    <div className={`App ${isDashboard ? 'dashboard-layout-mode' : ''}`}>
+      {!isDashboard && <Navigation />}
+      {!isDashboard && <RotatingName />}
+
+      <main className={isDashboard ? 'dashboard-main-area' : ''}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
@@ -68,34 +78,19 @@ function App() {
           <Route path="/resume" element={<Resume />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<AdminDashboard />} />
+          <Route path="/dashboard" element={<AdminDashboard themeMode={themeMode} onThemeChange={setThemeMode} onToggleTheme={toggleTheme} />} />
+          <Route path="/dashboard/*" element={<AdminDashboard themeMode={themeMode} onThemeChange={setThemeMode} onToggleTheme={toggleTheme} />} />
+          <Route path="/dashbored" element={<AdminDashboard themeMode={themeMode} onThemeChange={setThemeMode} onToggleTheme={toggleTheme} />} />
+          <Route path="/dashbored/*" element={<AdminDashboard themeMode={themeMode} onThemeChange={setThemeMode} onToggleTheme={toggleTheme} />} />
+          <Route path="/dashbore" element={<AdminDashboard themeMode={themeMode} onThemeChange={setThemeMode} onToggleTheme={toggleTheme} />} />
+          <Route path="/dashbore/*" element={<AdminDashboard themeMode={themeMode} onThemeChange={setThemeMode} onToggleTheme={toggleTheme} />} />
           <Route path="/mission-vision" element={<MissionVision />} />
           {/* Catch-all route for 404 errors */}
           <Route path="*" element={<Home />} />
         </Routes>
       </main>
 
-      <footer className="footer">
-        <div className="footer-content">
-          <div className="footer-brand">
-            <span className="footer-logo">DA</span>
-            <div>
-              <p className="footer-name">Desalew Alganeh</p>
-              <p className="footer-tagline">Full Stack Developer</p>
-            </div>
-          </div>
-          <SocialLinks
-            className="footer-links"
-            links={[
-              { key: 'email', label: 'Email', href: 'mailto:desu6262@gmail.com' },
-              { key: 'telegram', label: 'Telegram', href: 'https://t.me/desu6262', external: true, ariaLabel: 'Telegram @desu6262' },
-              { key: 'github', label: 'GitHub', href: 'https://github.com/DEsu2111', external: true },
-              { key: 'linkedin', label: 'LinkedIn', href: 'https://linkedin.com/in/desalew-aleganeh', external: true },
-            ]}
-          />
-          <p className="footer-copy">&copy; 2026 Desalew Alganeh. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer themeMode={themeMode} onThemeChange={setThemeMode} />
     </div>
   );
 }

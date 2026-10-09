@@ -22,6 +22,17 @@ const referenceData = [
 ];
 
 const References = () => {
+  const [references] = React.useState(() => {
+    try {
+      const saved = localStorage.getItem('adminReviewsList');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch (e) {}
+    return referenceData;
+  });
+
   return (
     <section className="references-page">
       <div className="section-header">
@@ -30,17 +41,26 @@ const References = () => {
       </div>
 
       <div className="references-grid">
-        {referenceData.map((ref, index) => (
+        {references.map((ref, index) => (
           <div key={index} className="ref-card">
-            <div className="ref-avatar">{ref.icon}</div>
+            <div className="ref-avatar">{ref.icon || '👨‍💼'}</div>
             <div className="ref-content">
-              <span className="ref-tag">{ref.tag}</span>
+              <span className="ref-tag">{ref.tag || 'Reference'}</span>
               <h3>{ref.name}</h3>
               <p className="ref-position">{ref.position}</p>
               <p className="ref-org">{ref.organization}</p>
+              {ref.note && (
+                <p className="ref-quote" style={{ fontStyle: 'italic', margin: '0.6rem 0', opacity: 0.9 }}>
+                  "{ref.note}"
+                </p>
+              )}
               <div className="ref-contact">
-                <a href={`tel:${ref.phone.replace(/\s/g, '')}`} className="contact-link">📞 {ref.phone}</a>
-                <a href={`mailto:${ref.email}`} className="contact-link">📧 {ref.email}</a>
+                {ref.phone && (
+                  <a href={`tel:${ref.phone.replace(/\s/g, '')}`} className="contact-link">📞 {ref.phone}</a>
+                )}
+                {ref.email && (
+                  <a href={`mailto:${ref.email}`} className="contact-link">📧 {ref.email}</a>
+                )}
               </div>
             </div>
           </div>

@@ -12,9 +12,16 @@ const projectSchema = new mongoose.Schema({
   technologies: [{
     type: String
   }],
+  category: {
+    type: String,
+    default: 'Web Applications'
+  },
   imageUrl: {
     type: String
   },
+  images: [{
+    type: String
+  }],
   liveUrl: {
     type: String
   },

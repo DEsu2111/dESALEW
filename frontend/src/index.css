@@ -4,16 +4,17 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  color: #f0f0f0;
-  background-color: #0f1a30;
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-0, #f8fafc);
+  color: var(--text-0, #0f172a);
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 a {
   text-decoration: none;
-  color: #4ecca3;
+  color: inherit;
 }
 
 ul {
