@@ -10,6 +10,21 @@ const phrases = [
   'Computer Engineer'
 ];
 
+const heroSkillSquares = [
+  { id: 'sq-1', name: 'React', tag: 'UI', variant: 'cyan', icon: '⚛' },
+  { id: 'sq-2', name: 'Laravel', tag: 'PHP', variant: 'brand', icon: '❖' },
+  { id: 'sq-3', name: 'Node.js', tag: 'API', variant: 'emerald', icon: '⬢' },
+  { id: 'sq-4', name: 'Next.js', tag: 'SSR', variant: 'slate', icon: '▲' },
+  { id: 'sq-5', name: 'Nest.js', tag: 'TS', variant: 'brand', icon: '🛡️' },
+  { id: 'sq-6', name: 'PostgreSQL', tag: 'SQL', variant: 'cyan', icon: '🗄️' },
+  { id: 'sq-7', name: 'MongoDB', tag: 'NoSQL', variant: 'emerald', icon: '🍃' },
+  { id: 'sq-8', name: 'Python', tag: 'Backend', variant: 'cyan', icon: '🐍' },
+  { id: 'sq-9', name: 'Django', tag: 'Web', variant: 'emerald', icon: '⚡' },
+  { id: 'sq-10', name: 'Tailwind', tag: 'CSS', variant: 'cyan', icon: '✦' },
+  { id: 'sq-11', name: 'Linux VPS', tag: 'DevOps', variant: 'slate', icon: '🖥️' },
+  { id: 'sq-12', name: 'TypeScript', tag: 'Typed', variant: 'brand', icon: 'TS' }
+];
+
 const Home = () => {
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
@@ -52,6 +67,19 @@ const Home = () => {
 
   return (
     <section id="home" className="hero">
+      <div className="hero-bg-squares" aria-hidden="true">
+        <div className="hero-grid-pattern" />
+        <div className="hero-glow-orb hero-glow-orb-1" />
+        <div className="hero-glow-orb hero-glow-orb-2" />
+        {heroSkillSquares.map((sq) => (
+          <div key={sq.id} className={`hero-sq ${sq.id} sq-variant-${sq.variant}`}>
+            <span className="hero-sq-icon">{sq.icon}</span>
+            <span className="hero-sq-name">{sq.name}</span>
+            <span className="hero-sq-tag">{sq.tag}</span>
+          </div>
+        ))}
+      </div>
+
       <div className="hero-content">
         <h1>Hello, I'm <span className="highlight">Desalew Alganeh</span></h1>
         <p className="hero-subheading">Full-Stack Developer | Real-Time Systems | Software Architecture</p>

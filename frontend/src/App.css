@@ -415,11 +415,467 @@ textarea:focus-visible,
   border-bottom: 1px solid rgba(17, 24, 39, 0.06);
 }
 
+/* Smart Architectural Square Grid & Skill Squares Background (Home Hero Only) */
+.hero-bg-squares {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.hero-grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: center center;
+  -webkit-mask-image: radial-gradient(ellipse 92% 95% at 50% 50%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 92% 95% at 50% 50%, #000 40%, transparent 100%);
+}
+
+.hero-glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+.hero-glow-orb-1 {
+  width: 340px;
+  height: 340px;
+  top: -60px;
+  right: 8%;
+  background: radial-gradient(circle, rgba(232, 69, 69, 0.22) 0%, transparent 70%);
+}
+
+.hero-glow-orb-2 {
+  width: 280px;
+  height: 280px;
+  bottom: -70px;
+  left: 12%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.16) 0%, transparent 70%);
+}
+
+/* Skill Square Tile Base */
+.hero-sq {
+  position: absolute;
+  width: 68px;
+  height: 68px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 5px 4px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.62);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.22),
+    0 0 8px rgba(232, 69, 69, 0.08);
+  animation: heroSkillFloat 7s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.hero-sq-icon {
+  font-size: 1.05rem;
+  line-height: 1;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 1px;
+}
+
+.hero-sq-name {
+  font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  font-size: 0.63rem;
+  font-weight: 700;
+  color: rgba(248, 250, 252, 0.92);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.hero-sq-tag {
+  font-size: 0.48rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: rgba(148, 163, 184, 0.82);
+  line-height: 1;
+}
+
+/* Subtle Variant Accents (Reduced Glow) */
+.hero-sq.sq-variant-brand {
+  border-color: rgba(232, 69, 69, 0.3);
+  background: linear-gradient(145deg, rgba(232, 69, 69, 0.11), rgba(15, 23, 42, 0.68));
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22), 0 0 8px rgba(232, 69, 69, 0.1);
+}
+
+.hero-sq.sq-variant-brand .hero-sq-icon,
+.hero-sq.sq-variant-brand .hero-sq-tag {
+  color: #ff7b7b;
+}
+
+.hero-sq.sq-variant-cyan {
+  border-color: rgba(56, 189, 248, 0.28);
+  background: linear-gradient(145deg, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.68));
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22), 0 0 8px rgba(56, 189, 248, 0.1);
+}
+
+.hero-sq.sq-variant-cyan .hero-sq-icon,
+.hero-sq.sq-variant-cyan .hero-sq-tag {
+  color: #7dd3fc;
+}
+
+.hero-sq.sq-variant-emerald {
+  border-color: rgba(52, 211, 153, 0.26);
+  background: linear-gradient(145deg, rgba(52, 211, 153, 0.09), rgba(15, 23, 42, 0.68));
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22), 0 0 8px rgba(52, 211, 153, 0.09);
+}
+
+.hero-sq.sq-variant-emerald .hero-sq-icon,
+.hero-sq.sq-variant-emerald .hero-sq-tag {
+  color: #6ee7b7;
+}
+
+.hero-sq.sq-variant-slate {
+  border-color: rgba(148, 163, 184, 0.24);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(15, 23, 42, 0.68));
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+}
+
+.hero-sq.sq-variant-slate .hero-sq-icon,
+.hero-sq.sq-variant-slate .hero-sq-tag {
+  color: #cbd5e1;
+}
+
+/* All 12 Skill Squares Moving from Different Sources & in Different Directions */
+
+/* 1. Bottom -> Top (Rising upward & slightly left) */
+.hero-sq.sq-1 {
+  bottom: -75px;
+  right: 12%;
+  animation: heroMoveBottomToTop 28s linear infinite;
+  animation-delay: -3s;
+}
+
+/* 2. Right -> Left (Gliding from right edge across to the left) */
+.hero-sq.sq-2 {
+  top: 18%;
+  right: -80px;
+  animation: heroMoveRightToLeft 36s linear infinite;
+  animation-delay: -9s;
+}
+
+/* 3. Top -> Bottom (Descending from top edge downward) */
+.hero-sq.sq-3 {
+  top: -75px;
+  right: 28%;
+  animation: heroMoveTopToBottom 30s linear infinite;
+  animation-delay: -16s;
+}
+
+/* 4. Left -> Right (Gliding from left edge across to the right) */
+.hero-sq.sq-4 {
+  bottom: 20%;
+  left: -80px;
+  animation: heroMoveLeftToRight 38s linear infinite;
+  animation-delay: -6s;
+}
+
+/* 5. Diagonal: Bottom-Right -> Top-Left */
+.hero-sq.sq-5 {
+  bottom: -75px;
+  right: 4%;
+  animation: heroMoveDiagBRtoTL 32s linear infinite;
+  animation-delay: -21s;
+}
+
+/* 6. Diagonal: Top-Right -> Bottom-Left */
+.hero-sq.sq-6 {
+  top: -75px;
+  right: 8%;
+  animation: heroMoveDiagTRtoBL 34s linear infinite;
+  animation-delay: -12s;
+}
+
+/* 7. Bottom -> Top (Center-Left rising upward & slightly right) */
+.hero-sq.sq-7 {
+  bottom: -75px;
+  left: 38%;
+  animation: heroMoveBottomToTop 31s linear infinite;
+  animation-delay: -24s;
+}
+
+/* 8. Left -> Right (Upper-Left gliding right with gentle wave) */
+.hero-sq.sq-8 {
+  top: 26%;
+  left: -80px;
+  animation: heroMoveLeftToRight 42s linear infinite;
+  animation-delay: -28s;
+}
+
+/* 9. Top -> Bottom (Left side descending downward) */
+.hero-sq.sq-9 {
+  top: -75px;
+  left: 16%;
+  animation: heroMoveTopToBottom 33s linear infinite;
+  animation-delay: -8s;
+}
+
+/* 10. Right -> Left (Lower-Right gliding left across canvas) */
+.hero-sq.sq-10 {
+  bottom: 28%;
+  right: -80px;
+  animation: heroMoveRightToLeft 40s linear infinite;
+  animation-delay: -31s;
+}
+
+/* 11. Diagonal: Bottom-Left -> Top-Right */
+.hero-sq.sq-11 {
+  bottom: -75px;
+  left: 6%;
+  animation: heroMoveDiagBLtoTR 35s linear infinite;
+  animation-delay: -15s;
+}
+
+/* 12. Diagonal: Top-Left -> Bottom-Right */
+.hero-sq.sq-12 {
+  top: -75px;
+  left: 42%;
+  animation: heroMoveDiagTLtoBR 37s linear infinite;
+  animation-delay: -19s;
+}
+
+/* Multi-Directional Keyframes (Upright & Readable) */
+@keyframes heroMoveBottomToTop {
+  0% {
+    transform: translate3d(0, 30px, 0) rotate(0deg) scale(0.92);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate3d(-24px, -220px, 0) rotate(-3deg) scale(1);
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.82;
+  }
+  100% {
+    transform: translate3d(16px, -470px, 0) rotate(2deg) scale(0.95);
+    opacity: 0;
+  }
+}
+
+@keyframes heroMoveTopToBottom {
+  0% {
+    transform: translate3d(0, -30px, 0) rotate(0deg) scale(0.92);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate3d(22px, 220px, 0) rotate(3deg) scale(1);
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.82;
+  }
+  100% {
+    transform: translate3d(-16px, 470px, 0) rotate(-2deg) scale(0.95);
+    opacity: 0;
+  }
+}
+
+@keyframes heroMoveRightToLeft {
+  0% {
+    transform: translate3d(40px, 0, 0) rotate(0deg) scale(0.92);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate3d(-45vw, -28px, 0) rotate(-3deg) scale(1);
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate3d(-95vw, 22px, 0) rotate(2deg) scale(0.94);
+    opacity: 0;
+  }
+}
+
+@keyframes heroMoveLeftToRight {
+  0% {
+    transform: translate3d(-40px, 0, 0) rotate(0deg) scale(0.92);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate3d(45vw, 26px, 0) rotate(3deg) scale(1);
+    opacity: 0.88;
+  }
+  85% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate3d(95vw, -22px, 0) rotate(-2deg) scale(0.94);
+    opacity: 0;
+  }
+}
+
+@keyframes heroMoveDiagBRtoTL {
+  0% {
+    transform: translate3d(30px, 30px, 0) rotate(0deg) scale(0.92);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate3d(-24vw, -220px, 0) rotate(-3deg) scale(1);
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.82;
+  }
+  100% {
+    transform: translate3d(-50vw, -460px, 0) rotate(2deg) scale(0.94);
+    opacity: 0;
+  }
+}
+
+@keyframes heroMoveDiagTRtoBL {
+  0% {
+    transform: translate3d(30px, -30px, 0) rotate(0deg) scale(0.92);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate3d(-22vw, 220px, 0) rotate(3deg) scale(1);
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.82;
+  }
+  100% {
+    transform: translate3d(-46vw, 460px, 0) rotate(-2deg) scale(0.94);
+    opacity: 0;
+  }
+}
+
+@keyframes heroMoveDiagBLtoTR {
+  0% {
+    transform: translate3d(-30px, 30px, 0) rotate(0deg) scale(0.92);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.82;
+  }
+  50% {
+    transform: translate3d(24vw, -220px, 0) rotate(3deg) scale(1);
+    opacity: 0.88;
+  }
+  85% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate3d(50vw, -460px, 0) rotate(-2deg) scale(0.94);
+    opacity: 0;
+  }
+}
+
+@keyframes heroMoveDiagTLtoBR {
+  0% {
+    transform: translate3d(-30px, -30px, 0) rotate(0deg) scale(0.92);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.82;
+  }
+  50% {
+    transform: translate3d(22vw, 220px, 0) rotate(-3deg) scale(1);
+    opacity: 0.88;
+  }
+  85% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate3d(44vw, 460px, 0) rotate(2deg) scale(0.94);
+    opacity: 0;
+  }
+}
+
+/* Light Theme Hero Background Skill Squares */
+[data-theme="light"] .hero-grid-pattern {
+  background-image:
+    linear-gradient(to right, rgba(0, 120, 255, 0.065) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 120, 255, 0.065) 1px, transparent 1px);
+}
+
+[data-theme="light"] .hero-glow-orb-1,
+[data-theme="light"] .hero-glow-orb-2 {
+  background: radial-gradient(circle, rgba(0, 120, 255, 0.12) 0%, transparent 70%);
+}
+
+[data-theme="light"] .hero-sq {
+  background: rgba(255, 255, 255, 0.78);
+  border-color: rgba(0, 120, 255, 0.22);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06), 0 0 6px rgba(0, 120, 255, 0.06);
+}
+
+[data-theme="light"] .hero-sq-name {
+  color: #0f172a;
+}
+
+[data-theme="light"] .hero-sq-tag {
+  color: #475569;
+}
+
+[data-theme="light"] .hero-sq.sq-variant-brand .hero-sq-icon,
+[data-theme="light"] .hero-sq.sq-variant-cyan .hero-sq-icon,
+[data-theme="light"] .hero-sq.sq-variant-emerald .hero-sq-icon,
+[data-theme="light"] .hero-sq.sq-variant-slate .hero-sq-icon {
+  color: #0078ff;
+}
+
+/* System Theme Hero Background Skill Squares */
+[data-theme="system"] .hero-grid-pattern {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+}
+
+[data-theme="system"] .hero-sq {
+  background: rgba(24, 24, 28, 0.75);
+}
+
 .hero-content {
   max-width: none;
   margin: 0;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 @keyframes fadeInUp {
@@ -3018,6 +3474,39 @@ textarea:focus-visible,
     padding: 0 1px !important;
     margin: 0 1px !important;
     width: calc(100% - 2px) !important;
+  }
+
+  .hero-grid-pattern {
+    background-size: 36px 36px;
+  }
+
+  .hero-sq {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+  }
+
+  .hero-sq-icon {
+    font-size: 0.78rem;
+  }
+
+  .hero-sq-name {
+    font-size: 0.5rem;
+  }
+
+  .hero-sq-tag {
+    font-size: 0.38rem;
+  }
+
+  /* On mobile: keep 5 multi-directional squares (sq-1 to sq-5) and hide sq-6 to sq-12 */
+  .hero-sq.sq-6,
+  .hero-sq.sq-7,
+  .hero-sq.sq-8,
+  .hero-sq.sq-9,
+  .hero-sq.sq-10,
+  .hero-sq.sq-11,
+  .hero-sq.sq-12 {
+    display: none !important;
   }
 
   .project-filters-wrapper {
