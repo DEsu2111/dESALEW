@@ -46,7 +46,6 @@ const Navigation = () => {
             <ul className="nav-submenu">
               <li><NavLink to="/education" onClick={closeMenu}>🎓 Education</NavLink></li>
               <li><NavLink to="/certificates" onClick={closeMenu}>🏅 Certificates</NavLink></li>
-              <li><NavLink to="/references" onClick={closeMenu}>🔗 References</NavLink></li>
             </ul>
           </li>
           <li className="nav-item nav-item-skills">
