@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import logoImg from '../assets/desu1.jpg';
 
@@ -14,6 +14,27 @@ const Navigation = () => {
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
+
+  // Lock body scroll and handle Escape key when mobile menu is open
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleKeyDown);
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isMenuOpen]);
 
   const navigateToAboutSection = (sectionId) => {
     closeMenu();
@@ -83,6 +104,12 @@ const Navigation = () => {
 
   return (
     <header className="header">
+      {/* Mobile drawer backdrop (covers remaining 30% area and closes drawer on click) */}
+      <div
+        className={`nav-backdrop ${isMenuOpen ? 'nav-backdrop-active' : ''}`}
+        onClick={closeMenu}
+        aria-hidden="true"
+      />
       <nav className="navbar">
         <NavLink to="/" className="nav-brand" onClick={closeMenu} aria-label="Go to home">
           <img className="nav-logo" src={logoImg} alt="" aria-hidden="true" />
