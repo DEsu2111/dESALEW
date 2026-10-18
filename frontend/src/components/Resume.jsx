@@ -18,14 +18,17 @@ const Resume = () => {
           Electrical &amp; Computer Engineering graduate and Full-Stack Software Developer specializing in scalable web
           applications, real-time platforms, and intelligent IoT systems.
         </p>
-        <div className="social-links resume-download-wrap">
+        <div className="resume-download-wrap">
           <a
             href="/resume.pdf"
-            className="social-link"
+            download="Desalew_Alganeh_Resume.pdf"
+            className="btn-download-resume-doc"
             target="_blank"
             rel="noopener noreferrer"
+            title="Download Desalew Alganeh Official Resume PDF"
           >
-            Download Resume (PDF)
+            <span className="btn-doc-icon">📄</span>
+            <span>Download Resume (PDF)</span>
           </a>
         </div>
       </div>
@@ -52,42 +55,56 @@ const Resume = () => {
 
           <h3 className="resume-col-title">Education &amp; Trainings</h3>
           <div className="resume-item">
-            <h4>B.Sc. in Electrical &amp; Computer Engineering</h4>
-            <span className="resume-date">2019 - 2025</span>
-            <p className="resume-italic">Hawassa University, Hawassa, Ethiopia (IoT Specialization)</p>
+            <h4>B.Sc. in Electrical Engineering (Computer Engineering)</h4>
+            <span className="resume-date">Oct 2019 – Jun 2025 (Graduated Jun 19, 2025)</span>
+            <p className="resume-italic">Hawassa University — Institute of Technology (HU-IoT), Hawassa, Ethiopia</p>
             <p className="resume-desc">
-              Specialized in Internet of Things (IoT), Embedded Systems, and Software Engineering. Graduated with a
-              <strong> Cumulative GPA of 3.50 / 4.0</strong> and a <strong>Peak Semester GPA of 3.85 / 4.0</strong>.
+              Graduated with a Cumulative GPA of <strong>3.36 / 4.00 (Distinction)</strong>. Passed the National Exit Examination
+              (<strong>65 / 100</strong>). B.Sc. Capstone Project <em>"Patient Management System"</em> awarded top grade <strong>"A+"</strong>{' '}
+              (Supervised by Lecturer Musa Hayato).
             </p>
           </div>
 
           <div className="resume-item">
-            <h4>Preparatory &amp; High School Education (Grades 9 – 12)</h4>
-            <span className="resume-date">2015 - 2019</span>
-            <p className="resume-italic">Preparatory &amp; General Secondary High School — Natural Science Stream</p>
+            <h4>Preparatory Secondary Education (Grades 11 – 12) — Natural Science</h4>
+            <span className="resume-date">2017 – 2019 G.C. (2010 – 2011 E.C.)</span>
+            <p className="resume-italic">Chagni Preparatory &amp; General Secondary School (Chagni Pre &amp; G-S-S-S), Awi Zone</p>
             <p className="resume-desc">
-              Completed General Secondary (Grades 9–10) and Preparatory Natural Science (Grades 11–12) with high
-              distinction on national examinations (EGSECE &amp; EUEE).
+              Achieved <strong>518 / 700 Total Score</strong> on the Ethiopian University Entrance Exam (EUEEC), with{' '}
+              <strong>100 / 100 in Chemistry</strong>, <strong>100 / 100 in Biology</strong>, <strong>99 / 100 in Civics</strong>, and{' '}
+              <strong>76 / 100 in Aptitude</strong>. High school transcript record of 89.90% (Grade 11) and 87.75% (Grade 12, Rank 1 Sem II).
+            </p>
+          </div>
+
+          <div className="resume-item">
+            <h4>General Secondary High School Education (Grades 9 – 10)</h4>
+            <span className="resume-date">2015 – 2017 G.C. (2008 – 2009 E.C.)</span>
+            <p className="resume-italic">Chagni Preparatory &amp; General Secondary School (Chagni Pre &amp; G-S-S-S), Awi Zone</p>
+            <p className="resume-desc">
+              Awarded the Ethiopian General Secondary Education Certificate (EGSEC) with <strong>"Very Great Distinction"</strong>{' '}
+              (6 A's, 2 B's). Maintained top academic ranking: <strong>93.23% in Grade 9 (Rank 1)</strong> and <strong>88.95% in Grade 10 (Rank 1)</strong>.
             </p>
           </div>
 
           <div className="resume-item">
             <h4>Primary &amp; Elementary School Education (Grades 1 – 8)</h4>
-            <span className="resume-date">2007 - 2015</span>
-            <p className="resume-italic">Primary &amp; Elementary School, Ethiopia</p>
+            <span className="resume-date">2007 – 2015 G.C. (1999 – 2007 E.C.)</span>
+            <p className="resume-italic">Primary &amp; Elementary School, Guangua / Chagni Area, Awi Zone, Amhara Region</p>
             <p className="resume-desc">
-              Completed elementary education with distinction and active participation in academic science clubs.
+              Completed the foundational 8-year Ethiopian primary curriculum from Grade 1 through Grade 8. Awarded the official{' '}
+              <strong>Primary School Leaving Certificate</strong> (74% mark / 74.72 percentile) and promoted to Grade 9 High School.
             </p>
           </div>
 
           <div className="resume-item">
-            <h4>Short-Term Technical Trainings</h4>
-            <span className="resume-date">2021 - 2024</span>
-            <p className="resume-italic">Full-Stack Web, Embedded IoT, Computer Maintenance &amp; Digital Media</p>
+            <h4>Short-Term Technical &amp; Professional Trainings</h4>
+            <span className="resume-date">2021 – 2024</span>
+            <p className="resume-italic">Customer Service, Full-Stack Web, Embedded IoT &amp; LAN Networking</p>
             <ul>
-              <li>Full-Stack Web Development (React, Next.js, Node.js, Nest.js, Laravel, Django).</li>
-              <li>Embedded Systems &amp; Circuit Simulation (PIC, Arduino, Proteus, Multisim).</li>
-              <li>Computer Maintenance, OS Administration &amp; LAN Networking (Hawassa University ICT).</li>
+              <li><strong>Customer Service Excellence:</strong> Certified by Rori Hotel Hawassa (Amir Awel, HR Manager, Aug 2024).</li>
+              <li><strong>Full-Stack Software Engineering:</strong> React, Next.js, Node.js, Nest.js, Django, Laravel, PostgreSQL, MongoDB.</li>
+              <li><strong>Embedded Systems &amp; Circuit Simulation:</strong> PIC Microcontroller, Arduino, ESP32, Proteus, Multisim, PCB design.</li>
+              <li><strong>ICT Maintenance &amp; LAN Networking:</strong> Hawassa University ICT Division (Hardware, OS, LAN routing).</li>
             </ul>
           </div>
 

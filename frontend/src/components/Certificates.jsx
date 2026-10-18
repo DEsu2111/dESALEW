@@ -45,11 +45,22 @@ const certificateData = [
     icon: '🌐',
     type: 'Service',
     imageUrl: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    title: 'Customer Service Training Completion Certificate',
+    issuer: 'Rori Hotel Hawassa',
+    description: 'Successful completion of 4 hrs intensive professional customer service and hospitality training.',
+    link: '#',
+    icon: '🏨',
+    type: 'Professional',
+    imageUrl: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80'
   }
 ];
 
+const API_BASE = import.meta.env.VITE_API_URL || '';
+
 const Certificates = () => {
-  const [certificates] = React.useState(() => {
+  const [certificates, setCertificates] = React.useState(() => {
     try {
       const saved = localStorage.getItem('adminCertsList');
       if (saved) {
@@ -59,6 +70,24 @@ const Certificates = () => {
     } catch (e) {}
     return certificateData;
   });
+
+  React.useEffect(() => {
+    const fetchCerts = async () => {
+      try {
+        const res = await fetch(`${API_BASE}/api/certificates`);
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            setCertificates(data);
+            try { localStorage.setItem('adminCertsList', JSON.stringify(data)); } catch (e) {}
+          }
+        }
+      } catch (err) {
+        console.warn('Using local certificates cache:', err);
+      }
+    };
+    fetchCerts();
+  }, []);
 
   return (
     <section className="certificates-page">

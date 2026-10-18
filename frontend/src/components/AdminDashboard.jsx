@@ -5,7 +5,7 @@ import ThemeSwitcher from './ThemeSwitcher';
 import Pagination from './Pagination';
 import './AdminDashboard.css';
 
-const API_BASE = 'http://localhost:5000';
+const API_BASE = import.meta.env.VITE_API_URL || '';
 
 export const PROJECT_CATEGORIES = [
   'SaaS & Cloud',
@@ -405,9 +405,13 @@ const AdminDashboard = ({ themeMode, onThemeChange, onToggleTheme }) => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const [msgRes, projRes] = await Promise.allSettled([
+      const [msgRes, projRes, skillRes, certRes, refRes, profileRes] = await Promise.allSettled([
         fetch(`${API_BASE}/api/contact`),
-        fetch(`${API_BASE}/api/projects`)
+        fetch(`${API_BASE}/api/projects`),
+        fetch(`${API_BASE}/api/skills`),
+        fetch(`${API_BASE}/api/certificates`),
+        fetch(`${API_BASE}/api/references`),
+        fetch(`${API_BASE}/api/profile`)
       ]);
 
       let msgData = [];
@@ -430,6 +434,36 @@ const AdminDashboard = ({ themeMode, onThemeChange, onToggleTheme }) => {
         }
       }
 
+      let skillData = [];
+      if (skillRes.status === 'fulfilled' && skillRes.value && skillRes.value.ok) {
+        try {
+          const json = await skillRes.value.json();
+          skillData = Array.isArray(json) ? json : [];
+        } catch {
+          skillData = [];
+        }
+      }
+
+      let certData = [];
+      if (certRes.status === 'fulfilled' && certRes.value && certRes.value.ok) {
+        try {
+          const json = await certRes.value.json();
+          certData = Array.isArray(json) ? json : [];
+        } catch {
+          certData = [];
+        }
+      }
+
+      let refData = [];
+      if (refRes.status === 'fulfilled' && refRes.value && refRes.value.ok) {
+        try {
+          const json = await refRes.value.json();
+          refData = Array.isArray(json) ? json : [];
+        } catch {
+          refData = [];
+        }
+      }
+
       setMessages(msgData);
 
       if (projData.length > 0) {
@@ -446,6 +480,31 @@ const AdminDashboard = ({ themeMode, onThemeChange, onToggleTheme }) => {
         } catch {
           setProjects([]);
         }
+      }
+
+      if (skillData.length > 0) {
+        setSkillsList(skillData);
+        try { localStorage.setItem('adminSkillsList', JSON.stringify(skillData)); } catch (e) {}
+      }
+
+      if (certData.length > 0) {
+        setCertsList(certData);
+        try { localStorage.setItem('adminCertsList', JSON.stringify(certData)); } catch (e) {}
+      }
+
+      if (refData.length > 0) {
+        setReviewsList(refData);
+        try { localStorage.setItem('adminReviewsList', JSON.stringify(refData)); } catch (e) {}
+      }
+
+      if (profileRes.status === 'fulfilled' && profileRes.value && profileRes.value.ok) {
+        try {
+          const profileJson = await profileRes.value.json();
+          if (profileJson && profileJson.fullName) {
+            setProfileData(prev => ({ ...prev, ...profileJson }));
+            try { localStorage.setItem('adminProfileData', JSON.stringify(profileJson)); } catch (e) {}
+          }
+        } catch (e) {}
       }
     } catch (err) {
       console.error('Fetch error:', err);
@@ -480,18 +539,25 @@ const AdminDashboard = ({ themeMode, onThemeChange, onToggleTheme }) => {
     setPasswords({ old: '', new: '', confirm: '' });
   };
 
-  const handleProfileSave = (e) => {
+  const handleProfileSave = async (e) => {
     e.preventDefault();
     try {
       localStorage.setItem('adminProfileData', JSON.stringify(profileData));
+      await fetch(`${API_BASE}/api/profile`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(profileData)
+      });
       setProfileSaved(true);
       setTimeout(() => setProfileSaved(false), 3500);
     } catch (err) {
       console.error('Failed to save profile:', err);
+      setProfileSaved(true);
+      setTimeout(() => setProfileSaved(false), 3500);
     }
   };
 
-  const handleProfileReset = () => {
+  const handleProfileReset = async () => {
     const defaults = {
       fullName: 'Desalew Alganeh',
       headline: 'Electrical & Computer Engineer • Full Stack Developer',
@@ -505,6 +571,13 @@ const AdminDashboard = ({ themeMode, onThemeChange, onToggleTheme }) => {
     };
     setProfileData(defaults);
     localStorage.setItem('adminProfileData', JSON.stringify(defaults));
+    try {
+      await fetch(`${API_BASE}/api/profile`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(defaults)
+      });
+    } catch (err) {}
     setProfileSaved(true);
     setTimeout(() => setProfileSaved(false), 3000);
   };
@@ -691,7 +764,7 @@ const AdminDashboard = ({ themeMode, onThemeChange, onToggleTheme }) => {
     setShowSkillModal(true);
   };
 
-  const handleSkillSubmit = (e) => {
+  const handleSkillSubmit = async (e) => {
     e.preventDefault();
     if (!skillFormData.title.trim() || !skillFormData.items.trim()) {
       alert('Please fill out the skill group title and items');
@@ -705,9 +778,29 @@ const AdminDashboard = ({ themeMode, onThemeChange, onToggleTheme }) => {
       items: itemsArr
     };
 
+    try {
+      const url = (editingSkill && editingSkill._id)
+        ? `${API_BASE}/api/skills/${editingSkill._id}`
+        : `${API_BASE}/api/skills`;
+      const method = (editingSkill && editingSkill._id) ? 'PUT' : 'POST';
+      const res = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newSkill)
+      });
+      if (res.ok) {
+        const savedData = await res.json().catch(() => ({}));
+        if (savedData && savedData._id) {
+          newSkill._id = savedData._id;
+        }
+      }
+    } catch (err) {
+      console.warn('Backend unavailable, saving skill locally:', err);
+    }
+
     let updated;
     if (editingSkill !== null && editingSkill.index !== undefined) {
-      updated = skillsList.map((s, i) => i === editingSkill.index ? newSkill : s);
+      updated = skillsList.map((s, i) => i === editingSkill.index ? { ...s, ...newSkill } : s);
     } else {
       updated = [newSkill, ...skillsList];
     }
@@ -717,8 +810,16 @@ const AdminDashboard = ({ themeMode, onThemeChange, onToggleTheme }) => {
     setEditingSkill(null);
   };
 
-  const handleDeleteSkill = (idx) => {
+  const handleDeleteSkill = async (idx) => {
     if (!window.confirm('Are you sure you want to delete this skill group?')) return;
+    const targetSkill = skillsList[idx];
+    if (targetSkill && targetSkill._id) {
+      try {
+        await fetch(`${API_BASE}/api/skills/${targetSkill._id}`, { method: 'DELETE' });
+      } catch (err) {
+        console.warn('Backend unavailable, deleting skill locally:', err);
+      }
+    }
     const updated = skillsList.filter((_, i) => i !== idx);
     setSkillsList(updated);
     try { localStorage.setItem('adminSkillsList', JSON.stringify(updated)); } catch (e) {}
@@ -759,7 +860,7 @@ const AdminDashboard = ({ themeMode, onThemeChange, onToggleTheme }) => {
     }
   };
 
-  const handleCertSubmit = (e) => {
+  const handleCertSubmit = async (e) => {
     e.preventDefault();
     if (!certFormData.title.trim() || !certFormData.issuer.trim()) {
       alert('Please fill out the certificate title and issuer');
@@ -771,13 +872,34 @@ const AdminDashboard = ({ themeMode, onThemeChange, onToggleTheme }) => {
       type: certFormData.type.trim() || 'Recognition',
       icon: certFormData.icon.trim() || '🏆',
       link: certFormData.link.trim() || '#',
+      description: certFormData.desc.trim(),
       desc: certFormData.desc.trim(),
       imageUrl: certFormData.imageUrl ? certFormData.imageUrl.trim() : ''
     };
 
+    try {
+      const url = (editingCert && editingCert._id)
+        ? `${API_BASE}/api/certificates/${editingCert._id}`
+        : `${API_BASE}/api/certificates`;
+      const method = (editingCert && editingCert._id) ? 'PUT' : 'POST';
+      const res = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newCert)
+      });
+      if (res.ok) {
+        const savedData = await res.json().catch(() => ({}));
+        if (savedData && savedData._id) {
+          newCert._id = savedData._id;
+        }
+      }
+    } catch (err) {
+      console.warn('Backend unavailable, saving certificate locally:', err);
+    }
+
     let updated;
     if (editingCert !== null && editingCert.index !== undefined) {
-      updated = certsList.map((c, i) => i === editingCert.index ? newCert : c);
+      updated = certsList.map((c, i) => i === editingCert.index ? { ...c, ...newCert } : c);
     } else {
       updated = [newCert, ...certsList];
     }
@@ -787,8 +909,16 @@ const AdminDashboard = ({ themeMode, onThemeChange, onToggleTheme }) => {
     setEditingCert(null);
   };
 
-  const handleDeleteCert = (idx) => {
+  const handleDeleteCert = async (idx) => {
     if (!window.confirm('Are you sure you want to delete this certificate?')) return;
+    const targetCert = certsList[idx];
+    if (targetCert && targetCert._id) {
+      try {
+        await fetch(`${API_BASE}/api/certificates/${targetCert._id}`, { method: 'DELETE' });
+      } catch (err) {
+        console.warn('Backend unavailable, deleting certificate locally:', err);
+      }
+    }
     const updated = certsList.filter((_, i) => i !== idx);
     setCertsList(updated);
     try { localStorage.setItem('adminCertsList', JSON.stringify(updated)); } catch (e) {}
@@ -818,7 +948,7 @@ const AdminDashboard = ({ themeMode, onThemeChange, onToggleTheme }) => {
     setShowReviewModal(true);
   };
 
-  const handleReviewSubmit = (e) => {
+  const handleReviewSubmit = async (e) => {
     e.preventDefault();
     if (!reviewFormData.name.trim() || !reviewFormData.position.trim()) {
       alert('Please fill out the reviewer name and position');
@@ -835,9 +965,29 @@ const AdminDashboard = ({ themeMode, onThemeChange, onToggleTheme }) => {
       note: reviewFormData.note.trim()
     };
 
+    try {
+      const url = (editingReview && editingReview._id)
+        ? `${API_BASE}/api/references/${editingReview._id}`
+        : `${API_BASE}/api/references`;
+      const method = (editingReview && editingReview._id) ? 'PUT' : 'POST';
+      const res = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newRev)
+      });
+      if (res.ok) {
+        const savedData = await res.json().catch(() => ({}));
+        if (savedData && savedData._id) {
+          newRev._id = savedData._id;
+        }
+      }
+    } catch (err) {
+      console.warn('Backend unavailable, saving reference locally:', err);
+    }
+
     let updated;
     if (editingReview !== null && editingReview.index !== undefined) {
-      updated = reviewsList.map((r, i) => i === editingReview.index ? newRev : r);
+      updated = reviewsList.map((r, i) => i === editingReview.index ? { ...r, ...newRev } : r);
     } else {
       updated = [newRev, ...reviewsList];
     }
@@ -847,8 +997,16 @@ const AdminDashboard = ({ themeMode, onThemeChange, onToggleTheme }) => {
     setEditingReview(null);
   };
 
-  const handleDeleteReview = (idx) => {
+  const handleDeleteReview = async (idx) => {
     if (!window.confirm('Are you sure you want to delete this review?')) return;
+    const targetRev = reviewsList[idx];
+    if (targetRev && targetRev._id) {
+      try {
+        await fetch(`${API_BASE}/api/references/${targetRev._id}`, { method: 'DELETE' });
+      } catch (err) {
+        console.warn('Backend unavailable, deleting reference locally:', err);
+      }
+    }
     const updated = reviewsList.filter((_, i) => i !== idx);
     setReviewsList(updated);
     try { localStorage.setItem('adminReviewsList', JSON.stringify(updated)); } catch (e) {}

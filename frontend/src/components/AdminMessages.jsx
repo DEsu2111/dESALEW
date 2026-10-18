@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AdminMessages.css';
 
+const API_BASE = import.meta.env.VITE_API_URL || '';
+
 const AdminMessages = () => {
   const [messages, setMessages] = useState([]);
   const [filter, setFilter] = useState('all');
@@ -11,7 +13,7 @@ const AdminMessages = () => {
 
   const fetchMessages = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/contact');
+      const response = await fetch(`${API_BASE}/api/contact`);
       if (!response.ok) throw new Error('Failed to fetch messages');
       const data = await response.json();
       setMessages(data);
@@ -32,7 +34,7 @@ const AdminMessages = () => {
 
   const updateStatus = async (id, newStatus) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/contact/${id}`, {
+      const response = await fetch(`${API_BASE}/api/contact/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus }),

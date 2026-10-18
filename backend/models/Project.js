@@ -3,30 +3,42 @@ const mongoose = require('mongoose');
 const projectSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
   description: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
   technologies: [{
-    type: String
+    type: String,
+    trim: true
   }],
   category: {
     type: String,
-    default: 'Web Applications'
+    default: 'Web Applications',
+    trim: true
   },
   imageUrl: {
-    type: String
+    type: String,
+    default: ''
   },
   images: [{
-    type: String
+    type: String,
+    trim: true
   }],
   liveUrl: {
-    type: String
+    type: String,
+    default: ''
   },
   githubUrl: {
-    type: String
+    type: String,
+    default: ''
+  },
+  order: {
+    type: Number,
+    default: 0
   }
 }, {
   timestamps: true

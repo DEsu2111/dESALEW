@@ -9,9 +9,21 @@ const referenceData = [
     phone: '+251 913 96 1344',
     email: 'alemayehu.cheru0236@gmail.com',
     tag: 'Academic Reference',
-    relationship: 'Department Head & Senior Academic Advisor (2019 – 2025)',
-    note: 'Can attest to my academic performance (3.50 CGPA / 3.85 Peak GPA), engineering rigor in IoT and Embedded Systems, laboratory research, and B.Sc. capstone project execution.',
-    areas: ['Electrical & Computer Eng.', 'IoT & Embedded Systems', 'Academic Excellence', 'Capstone Research']
+    relationship: 'Department Head & Senior Academic Advisor (2020 – 2025)',
+    note: 'Can attest to my academic performance (3.36 CGPA with Distinction), engineering rigor in IoT and Embedded Systems, laboratory research, and hardware-software system design.',
+    areas: ['Electrical & Computer Eng.', 'IoT & Embedded Systems', 'Academic Excellence', 'System R&D']
+  },
+  {
+    name: 'Mr. Musa Hayato',
+    position: 'Lecturer, Computer Engineering Stream',
+    organization: 'Hawassa University — Institute of Technology',
+    location: 'Hawassa, Ethiopia',
+    phone: '+251 920 715 314',
+    email: 'musahayato@gmail.com',
+    tag: 'Academic & Capstone Advisor',
+    relationship: 'Course Instructor (Data Structures & Algorithms) & B.Sc. Thesis Supervisor (2020 – 2025)',
+    note: 'Supervised Desalew\'s B.Sc. capstone project "Patient Management System" (Grade A+) and taught Data Structures and Algorithms, commending his dedication, academic potential, and conscientiousness.',
+    areas: ['Data Structures & Algorithms', 'B.Sc. Thesis Project', 'Software Architecture', 'Academic Rigor']
   },
   {
     name: 'Mr. Samson Usmael',
@@ -27,8 +39,10 @@ const referenceData = [
   }
 ];
 
+const API_BASE = import.meta.env.VITE_API_URL || '';
+
 const References = () => {
-  const [references] = React.useState(() => {
+  const [references, setReferences] = React.useState(() => {
     try {
       const saved = localStorage.getItem('adminReviewsList');
       if (saved) {
@@ -38,6 +52,24 @@ const References = () => {
     } catch (e) {}
     return referenceData;
   });
+
+  React.useEffect(() => {
+    const fetchRefs = async () => {
+      try {
+        const res = await fetch(`${API_BASE}/api/references`);
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            setReferences(data);
+            try { localStorage.setItem('adminReviewsList', JSON.stringify(data)); } catch (e) {}
+          }
+        }
+      } catch (err) {
+        console.warn('Using local references cache:', err);
+      }
+    };
+    fetchRefs();
+  }, []);
 
   return (
     <section id="references" className="references-page-clean">
