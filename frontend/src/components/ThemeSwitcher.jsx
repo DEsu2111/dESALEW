@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './ThemeSwitcher.css';
 
-const ThemeSwitcher = ({ themeMode = 'dark', onThemeChange }) => {
+const ThemeSwitcher = ({ themeMode = 'system', onThemeChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import ThemeSwitcher from './ThemeSwitcher';
 import './Footer.css';
 
-const Footer = ({ themeMode = 'dark', onThemeChange }) => {
+const Footer = ({ themeMode = 'system', onThemeChange }) => {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {

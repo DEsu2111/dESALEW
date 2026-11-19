@@ -9651,3 +9651,1104 @@ a.direct-card-value:hover {
   height: 0 !important;
 }
 
+
+
+/* ==========================================================================
+   iCog Labs Light Mode Aesthetic (Exclusively Scoped to System Mode)
+   Applies only when data-theme-mode="system".
+   Project's native Light Mode (data-theme-mode="light") and Dark Mode 
+   (data-theme="dark") remain 100% untouched.
+   ========================================================================== */
+
+html[data-theme-mode="system"] {
+  /* ------------------------------------------------------------------------
+     1. Color System Variables (Paper, Ink, Clay, Sand)
+     ------------------------------------------------------------------------ */
+  --bg-0: #f3eee4;                         /* Paper: Base page background */
+  --bg-1: #e6d7bd;                         /* Sand: Secondary section background */
+  --surface-0: #ede8df;                    /* Partners icon surface / Card background */
+  --surface-1: #f3eee4;                    /* Paper: Inner card / table surface */
+  --text-0: #1a1612;                       /* Ink: Deep charcoal black headline text */
+  --text-1: #2c251f;                       /* Rich warm dark brown body text */
+  --muted: #5e5449;                        /* Muted earthy gray-brown metadata text */
+  --brand: #d9531e;                        /* Clay: Terracotta orange accent */
+  --brand-2: #c24413;                      /* Deeper clay for hover / active states */
+  --ring: rgba(217, 83, 30, 0.35);         /* Clay translucent focus ring */
+  --shadow-0: 0 4px 18px rgba(26, 22, 18, 0.06);
+  --shadow-1: 0 12px 36px rgba(26, 22, 18, 0.11);
+  --border-color: rgba(26, 22, 18, 0.12);
+
+  /* Specific iCog Labs Palette Tokens */
+  --paper: #f3eee4;
+  --ink: #1a1612;
+  --clay: #d9531e;
+  --sand: #e6d7bd;
+  --partners-surface: #c9b99a;
+
+  /* Typography Families */
+  --font-serif: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Inter Tight", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* iCog Labs Background Gradients & Patterns */
+  --hero-paper-radial: radial-gradient(ellipse at 18% 28%, #f3eee4fa 0%, #f3eee4e6 32%, #f3eee48c 60%, #f3eee400 92%);
+  --hero-paper-linear: linear-gradient(180deg, #f3eee499 0%, #f3eee400 22%, #f3eee400 70%, #f3eee4e6 100%);
+  --globe-pattern: linear-gradient(32deg, rgba(217, 83, 30, 0.08) 1px, transparent 1px),
+                   linear-gradient(148deg, rgba(122, 46, 20, 0.10) 1px, transparent 1px),
+                   radial-gradient(circle at 58% 46%, rgba(217, 83, 30, 0.20) 0 2px, transparent 2.5px),
+                   radial-gradient(circle at 72% 34%, rgba(122, 46, 20, 0.22) 0 1.5px, transparent 2px),
+                   radial-gradient(circle at 48% 62%, rgba(243, 238, 228, 0.18) 0 1.5px, transparent 2px);
+}
+
+/* --------------------------------------------------------------------------
+   2. Base Body & General Typography
+   -------------------------------------------------------------------------- */
+html[data-theme-mode="system"],
+html[data-theme-mode="system"] body {
+  background-color: var(--bg-0) !important;
+  color: var(--text-0) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 18px;
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Suppress ambient dark-mode glow pseudoelements */
+html[data-theme-mode="system"] body::before,
+html[data-theme-mode="system"] body::after {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. Headings & Titles (Fraunces Serif Display)
+   -------------------------------------------------------------------------- */
+html[data-theme-mode="system"] h1,
+html[data-theme-mode="system"] h2,
+html[data-theme-mode="system"] h3,
+html[data-theme-mode="system"] h4,
+html[data-theme-mode="system"] h5,
+html[data-theme-mode="system"] h6,
+html[data-theme-mode="system"] .hero-title,
+html[data-theme-mode="system"] .section-title,
+html[data-theme-mode="system"] .about-title,
+html[data-theme-mode="system"] .timeline-title,
+html[data-theme-mode="system"] .service-title,
+html[data-theme-mode="system"] .project-title,
+html[data-theme-mode="system"] .card-title {
+  font-family: var(--font-serif) !important;
+  font-optical-sizing: auto;
+  color: var(--text-0) !important;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
+html[data-theme-mode="system"] .hero-title {
+  font-size: clamp(2.4rem, 5.5vw, 4.2rem) !important;
+  font-weight: 500;
+  line-height: 1.12;
+}
+
+/* Hero bold emphasis matches iCog Labs "Beneficial AGI" (weight 900) */
+html[data-theme-mode="system"] .hero-title strong,
+html[data-theme-mode="system"] .hero-title b,
+html[data-theme-mode="system"] .section-title strong {
+  font-weight: 900 !important;
+  color: var(--text-0) !important;
+}
+
+/* Hero italic accent matches iCog Labs "Building" (weight 300, italic) */
+html[data-theme-mode="system"] .hero-title em,
+html[data-theme-mode="system"] .hero-title i,
+html[data-theme-mode="system"] .hero-subtitle em {
+  font-style: italic !important;
+  font-weight: 300 !important;
+}
+
+html[data-theme-mode="system"] .section-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem) !important;
+  font-weight: 500;
+}
+
+/* Subheadings & descriptions */
+html[data-theme-mode="system"] p,
+html[data-theme-mode="system"] .hero-description,
+html[data-theme-mode="system"] .section-description,
+html[data-theme-mode="system"] .about-text,
+html[data-theme-mode="system"] .project-description,
+html[data-theme-mode="system"] .service-description {
+  font-family: var(--font-sans) !important;
+  color: var(--text-1) !important;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+/* --------------------------------------------------------------------------
+   4. Monospaced UI Elements (JetBrains Mono)
+   Navigation, buttons, pills, tags, metadata, counters, code
+   -------------------------------------------------------------------------- */
+html[data-theme-mode="system"] .nav-link,
+html[data-theme-mode="system"] .navbar a,
+html[data-theme-mode="system"] .cta-button,
+html[data-theme-mode="system"] .btn,
+html[data-theme-mode="system"] button,
+html[data-theme-mode="system"] .theme-pill,
+html[data-theme-mode="system"] .badge,
+html[data-theme-mode="system"] .skill-pill,
+html[data-theme-mode="system"] .about-role-badge,
+html[data-theme-mode="system"] .project-tag,
+html[data-theme-mode="system"] .timeline-date,
+html[data-theme-mode="system"] .stat-label,
+html[data-theme-mode="system"] .typewriter-prefix,
+html[data-theme-mode="system"] code,
+html[data-theme-mode="system"] pre {
+  font-family: var(--font-mono) !important;
+  font-variant-numeric: tabular-nums slashed-zero;
+}
+
+/* Navigation Menu */
+html[data-theme-mode="system"] .nav-link,
+html[data-theme-mode="system"] .navbar a {
+  font-weight: 600 !important;
+  font-size: 0.92rem !important;
+  color: var(--text-0) !important;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+html[data-theme-mode="system"] .nav-link:hover,
+html[data-theme-mode="system"] .navbar a:hover,
+html[data-theme-mode="system"] .nav-link.active {
+  color: var(--brand) !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. Buttons & Interactive Controls (Ink, Clay, Paper)
+   -------------------------------------------------------------------------- */
+/* Primary Action Button (Matches iCog "Partner with us" -> Solid Ink with Clay hover) */
+html[data-theme-mode="system"] .cta-button.primary,
+html[data-theme-mode="system"] .cta-primary,
+html[data-theme-mode="system"] .btn-primary,
+html[data-theme-mode="system"] button.btn-primary {
+  background-color: var(--ink) !important;
+  color: var(--paper) !important;
+  border: 1px solid var(--ink) !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 14px rgba(26, 22, 18, 0.12) !important;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease !important;
+}
+
+html[data-theme-mode="system"] .cta-button.primary:hover,
+html[data-theme-mode="system"] .cta-primary:hover,
+html[data-theme-mode="system"] .btn-primary:hover {
+  background-color: var(--brand) !important;
+  border-color: var(--brand) !important;
+  color: var(--paper) !important;
+  transform: translateY(-2px);
+}
+
+/* Secondary Action Button (Outline) */
+html[data-theme-mode="system"] .cta-button.secondary,
+html[data-theme-mode="system"] .cta-secondary,
+html[data-theme-mode="system"] .btn-secondary,
+html[data-theme-mode="system"] .secondary-outline {
+  background-color: transparent !important;
+  color: var(--text-0) !important;
+  border: 1px solid rgba(26, 22, 18, 0.28) !important;
+  font-weight: 600 !important;
+  transition: background-color 0.2s ease, border-color 0.2s ease !important;
+}
+
+html[data-theme-mode="system"] .cta-button.secondary:hover,
+html[data-theme-mode="system"] .cta-secondary:hover,
+html[data-theme-mode="system"] .btn-secondary:hover,
+html[data-theme-mode="system"] .secondary-outline:hover {
+  background-color: rgba(26, 22, 18, 0.05) !important;
+  border-color: var(--ink) !important;
+  color: var(--text-0) !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. Badges, Tags, & Metadata Pills (Clay Tint & JetBrains Mono)
+   -------------------------------------------------------------------------- */
+html[data-theme-mode="system"] .badge,
+html[data-theme-mode="system"] .skill-pill,
+html[data-theme-mode="system"] .about-role-badge,
+html[data-theme-mode="system"] .project-tag,
+html[data-theme-mode="system"] .service-tag {
+  background-color: rgba(217, 83, 30, 0.12) !important;
+  color: var(--brand) !important;
+  border: 1px solid rgba(217, 83, 30, 0.25) !important;
+  font-weight: 600 !important;
+  font-size: 0.8rem !important;
+  letter-spacing: 0.01em;
+}
+
+/* --------------------------------------------------------------------------
+   7. Header, Navigation, & Surfaces
+   -------------------------------------------------------------------------- */
+html[data-theme-mode="system"] .header {
+  background: rgba(243, 238, 228, 0.94) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border-bottom: 1px solid rgba(26, 22, 18, 0.1) !important;
+  box-shadow: 0 4px 20px rgba(26, 22, 18, 0.04) !important;
+}
+
+html[data-theme-mode="system"] .nav-submenu {
+  background: var(--surface-0) !important;
+  border: 1px solid rgba(26, 22, 18, 0.12) !important;
+  box-shadow: var(--shadow-1) !important;
+}
+
+/* --------------------------------------------------------------------------
+   8. Hero Section Background & Overlays
+   -------------------------------------------------------------------------- */
+html[data-theme-mode="system"] .hero {
+  background-color: var(--bg-0) !important;
+  background-image: var(--globe-pattern) !important;
+  background-size: 18rem 18rem, 24rem 24rem, 18rem 18rem, 20rem 20rem, 16rem 16rem !important;
+  background-position: center !important;
+  position: relative;
+}
+
+html[data-theme-mode="system"] .hero-grid-pattern {
+  background-image: var(--hero-paper-radial), var(--hero-paper-linear) !important;
+  opacity: 0.85 !important;
+}
+
+/* Rotating Name & Typewriter text */
+html[data-theme-mode="system"] .rotating-name,
+html[data-theme-mode="system"] .typewriter-text {
+  font-family: var(--font-serif) !important;
+  font-weight: 700 !important;
+  color: var(--brand) !important;
+}
+
+html[data-theme-mode="system"] .typewriter-prefix {
+  color: var(--muted) !important;
+  font-weight: 500 !important;
+}
+
+/* --------------------------------------------------------------------------
+   9. Cards & Content Sections (Warm Paper & Sand)
+   -------------------------------------------------------------------------- */
+html[data-theme-mode="system"] .project-card,
+html[data-theme-mode="system"] .service-card,
+html[data-theme-mode="system"] .about-card,
+html[data-theme-mode="system"] .timeline-item,
+html[data-theme-mode="system"] .education-card,
+html[data-theme-mode="system"] .certificate-card,
+html[data-theme-mode="system"] .reference-card,
+html[data-theme-mode="system"] .contact-card,
+html[data-theme-mode="system"] .dashboard-card {
+  background-color: var(--surface-0) !important;
+  border: 1px solid rgba(26, 22, 18, 0.1) !important;
+  box-shadow: var(--shadow-0) !important;
+  color: var(--text-0) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
+}
+
+html[data-theme-mode="system"] .project-card:hover,
+html[data-theme-mode="system"] .service-card:hover {
+  border-color: rgba(217, 83, 30, 0.35) !important;
+  box-shadow: var(--shadow-1) !important;
+  transform: translateY(-4px);
+}
+
+/* Secondary Section Highlight Bands (Sand Background) */
+html[data-theme-mode="system"] .highlight-section,
+html[data-theme-mode="system"] .services-overview-band,
+html[data-theme-mode="system"] .about-quick-actions {
+  background-color: var(--bg-1) !important;
+  border-color: rgba(26, 22, 18, 0.12) !important;
+}
+
+/* --------------------------------------------------------------------------
+   10. Form Inputs & Footer
+   -------------------------------------------------------------------------- */
+html[data-theme-mode="system"] input,
+html[data-theme-mode="system"] textarea,
+html[data-theme-mode="system"] select {
+  background-color: var(--surface-1) !important;
+  border: 1px solid rgba(26, 22, 18, 0.2) !important;
+  color: var(--text-0) !important;
+  font-family: var(--font-sans) !important;
+}
+
+html[data-theme-mode="system"] input:focus,
+html[data-theme-mode="system"] textarea:focus,
+html[data-theme-mode="system"] select:focus {
+  border-color: var(--brand) !important;
+  outline: 3px solid var(--ring) !important;
+}
+
+html[data-theme-mode="system"] .footer {
+  background-color: var(--bg-0) !important;
+  border-top: 1px solid rgba(26, 22, 18, 0.12) !important;
+  color: var(--text-1) !important;
+}
+
+html[data-theme-mode="system"] a {
+  color: var(--brand);
+}
+
+html[data-theme-mode="system"] a:hover {
+  color: var(--brand-2);
+}
+
+/* Theme Switcher in System Mode */
+html[data-theme-mode="system"] .theme-pill {
+  background: var(--surface-0) !important;
+  border: 1px solid rgba(26, 22, 18, 0.15) !important;
+}
+
+html[data-theme-mode="system"] .theme-pill-btn.active {
+  background: var(--ink) !important;
+  color: var(--paper) !important;
+}
+
+
+
+/* ==========================================================================
+   BLUE-PURGE OVERRIDES FOR SYSTEM MODE ONLY
+   Replaces all residual #0078ff / royal blue / cold gray elements with
+   iCog Labs Clay (#d9531e), Ink (#1a1612), Paper (#f3eee4), and Sand (#e6d7bd).
+   Existing Light Mode (data-theme-mode="light") and Dark Mode (data-theme="dark")
+   remain 100% untouched.
+   ========================================================================== */
+
+/* 1. FOOTER BLUE-PURGE (In System Mode) */
+html[data-theme-mode="system"] .footer-section {
+  background-color: var(--bg-0) !important;
+  color: var(--text-0) !important;
+  border-top: 1px solid rgba(26, 22, 18, 0.12) !important;
+}
+
+html[data-theme-mode="system"] .footer-bottom {
+  background-color: var(--bg-1) !important;
+  border-top: 1px solid rgba(26, 22, 18, 0.12) !important;
+  color: var(--text-1) !important;
+}
+
+html[data-theme-mode="system"] .footer-logo-title,
+html[data-theme-mode="system"] .footer-column h4 {
+  color: var(--text-0) !important;
+  font-family: var(--font-serif) !important;
+  font-weight: 600 !important;
+}
+
+html[data-theme-mode="system"] .footer-description,
+html[data-theme-mode="system"] .footer-nav-list li a,
+html[data-theme-mode="system"] .footer-contact .contact-item,
+html[data-theme-mode="system"] .footer-contact .contact-item a {
+  color: var(--text-1) !important;
+  font-family: var(--font-sans) !important;
+}
+
+html[data-theme-mode="system"] .footer-contact .contact-item strong {
+  color: var(--text-0) !important;
+}
+
+html[data-theme-mode="system"] .footer-nav-list li a:hover,
+html[data-theme-mode="system"] .footer-contact .contact-item a:hover {
+  color: var(--brand) !important;
+}
+
+html[data-theme-mode="system"] .social-circle {
+  border-color: rgba(26, 22, 18, 0.2) !important;
+  color: var(--text-0) !important;
+  background-color: transparent !important;
+}
+
+html[data-theme-mode="system"] .social-circle:hover {
+  background-color: var(--brand) !important;
+  border-color: var(--brand) !important;
+  color: var(--paper) !important;
+  box-shadow: 0 4px 14px rgba(217, 83, 30, 0.35) !important;
+  transform: translateY(-2px);
+}
+
+html[data-theme-mode="system"] .highlight-author {
+  color: var(--brand) !important;
+  font-family: var(--font-serif) !important;
+  font-weight: 700 !important;
+}
+
+html[data-theme-mode="system"] .scroll-top-btn {
+  background-color: var(--ink) !important;
+  border-color: var(--ink) !important;
+  color: var(--paper) !important;
+}
+
+html[data-theme-mode="system"] .scroll-top-btn:hover {
+  background-color: var(--brand) !important;
+  border-color: var(--brand) !important;
+  color: var(--paper) !important;
+}
+
+html[data-theme-mode="system"] .footer-theme-box {
+  background: var(--surface-0) !important;
+  border-color: rgba(26, 22, 18, 0.15) !important;
+}
+
+/* 2. HERO & TYPEWRITER BLUE-PURGE */
+html[data-theme-mode="system"] .typewriter-text {
+  color: var(--brand) !important;
+  border-bottom-color: var(--brand) !important;
+  font-family: var(--font-serif) !important;
+  font-weight: 700 !important;
+}
+
+html[data-theme-mode="system"] .typewriter-cursor {
+  color: var(--brand) !important;
+}
+
+html[data-theme-mode="system"] .hero-sq {
+  border-color: rgba(217, 83, 30, 0.25) !important;
+  box-shadow: 0 4px 14px rgba(26, 22, 18, 0.06) !important;
+  background: var(--surface-0) !important;
+}
+
+html[data-theme-mode="system"] .hero-sq.sq-variant-slate .hero-sq-icon,
+html[data-theme-mode="system"] .hero-sq-icon {
+  color: var(--brand) !important;
+}
+
+html[data-theme-mode="system"] .hero-glow-orb-1,
+html[data-theme-mode="system"] .hero-glow-orb-2 {
+  background: radial-gradient(circle, rgba(217, 83, 30, 0.14) 0%, transparent 70%) !important;
+}
+
+/* 3. ABOUT & RESUME BLUE-PURGE */
+html[data-theme-mode="system"] .btn-download-resume-doc {
+  border: 1px solid var(--ink) !important;
+  color: var(--ink) !important;
+  background: transparent !important;
+}
+
+html[data-theme-mode="system"] .btn-download-resume-doc:hover {
+  background: var(--brand) !important;
+  border-color: var(--brand) !important;
+  color: var(--paper) !important;
+}
+
+html[data-theme-mode="system"] .about-role-badge {
+  border-color: rgba(217, 83, 30, 0.35) !important;
+  color: var(--brand) !important;
+  background: rgba(217, 83, 30, 0.1) !important;
+}
+
+html[data-theme-mode="system"] .about-quick-actions .cta-button.secondary-outline {
+  color: var(--text-0) !important;
+  border: 1px solid rgba(26, 22, 18, 0.28) !important;
+}
+
+html[data-theme-mode="system"] .about-quick-actions .cta-button.secondary-outline:hover {
+  background: rgba(26, 22, 18, 0.05) !important;
+  border-color: var(--ink) !important;
+  color: var(--text-0) !important;
+}
+
+html[data-theme-mode="system"] .about-photo .photo-frame {
+  border-color: rgba(217, 83, 30, 0.3) !important;
+}
+
+html[data-theme-mode="system"] .resume-section .resume-skill-fill {
+  background: linear-gradient(90deg, #d9531e 0%, #e65c00 60%, #ff7849 100%) !important;
+  box-shadow: 0 0 10px rgba(217, 83, 30, 0.35) !important;
+}
+
+/* 4. SKILLS & DOMAIN CARDS BLUE-PURGE */
+html[data-theme-mode="system"] .skill-percent-tag {
+  color: var(--brand) !important;
+}
+
+html[data-theme-mode="system"] .skills-domain-card:hover {
+  border-color: rgba(217, 83, 30, 0.45) !important;
+}
+
+html[data-theme-mode="system"] .skills-count-pill {
+  border-color: rgba(217, 83, 30, 0.35) !important;
+  color: var(--brand) !important;
+  background: rgba(217, 83, 30, 0.1) !important;
+}
+
+html[data-theme-mode="system"] .skills-filter-pill.active {
+  border-color: var(--brand) !important;
+  color: var(--brand) !important;
+  background: rgba(217, 83, 30, 0.12) !important;
+  box-shadow: 0 0 10px rgba(217, 83, 30, 0.25) !important;
+}
+
+html[data-theme-mode="system"] .skills-item-chip.highlighted-chip {
+  border-color: var(--brand) !important;
+  background: rgba(217, 83, 30, 0.12) !important;
+  color: var(--brand) !important;
+}
+
+html[data-theme-mode="system"] .skills-cta-footer .cta-button {
+  border: 1px solid var(--ink) !important;
+  color: var(--ink) !important;
+}
+
+html[data-theme-mode="system"] .skills-cta-footer .cta-button:hover {
+  background: var(--brand) !important;
+  border-color: var(--brand) !important;
+  color: var(--paper) !important;
+  box-shadow: 0 4px 16px rgba(217, 83, 30, 0.25) !important;
+}
+
+html[data-theme-mode="system"] .skills-cta-footer .cta-button.secondary-outline:hover {
+  border-color: var(--ink) !important;
+  color: var(--text-0) !important;
+  background: rgba(26, 22, 18, 0.05) !important;
+}
+
+/* 5. EDUCATION & COURSES BLUE-PURGE */
+html[data-theme-mode="system"] .education-spec-pill {
+  border-color: rgba(217, 83, 30, 0.3) !important;
+  color: var(--brand) !important;
+  background: rgba(217, 83, 30, 0.1) !important;
+}
+
+html[data-theme-mode="system"] .edu-metric-badge.highlight-metric {
+  border-color: rgba(217, 83, 30, 0.3) !important;
+  color: var(--brand) !important;
+}
+
+html[data-theme-mode="system"] .education-total-pill {
+  border-color: rgba(217, 83, 30, 0.35) !important;
+  color: var(--brand) !important;
+  background: rgba(217, 83, 30, 0.1) !important;
+}
+
+html[data-theme-mode="system"] .course-card:hover {
+  border-color: rgba(217, 83, 30, 0.42) !important;
+}
+
+html[data-theme-mode="system"] .course-domain-icon {
+  border-color: rgba(217, 83, 30, 0.28) !important;
+  color: var(--brand) !important;
+}
+
+html[data-theme-mode="system"] .course-count {
+  color: var(--brand) !important;
+  border-color: rgba(217, 83, 30, 0.38) !important;
+}
+
+html[data-theme-mode="system"] .course-tag::before {
+  background: var(--brand) !important;
+}
+
+html[data-theme-mode="system"] .course-tag:hover {
+  border-color: rgba(217, 83, 30, 0.45) !important;
+  color: var(--brand) !important;
+}
+
+html[data-theme-mode="system"] .education-more-btn {
+  background: var(--ink) !important;
+  color: var(--paper) !important;
+  border-color: var(--ink) !important;
+  box-shadow: 0 4px 14px rgba(26, 22, 18, 0.2) !important;
+}
+
+html[data-theme-mode="system"] .education-more-btn:hover {
+  background: var(--brand) !important;
+  border-color: var(--brand) !important;
+  color: var(--paper) !important;
+}
+
+/* 6. EXPERIENCE & TIMELINE BLUE-PURGE */
+html[data-theme-mode="system"] .experience-timeline-card:hover {
+  border-color: rgba(217, 83, 30, 0.45) !important;
+}
+
+html[data-theme-mode="system"] .exp-role-badge {
+  border-color: rgba(217, 83, 30, 0.45) !important;
+  color: var(--brand) !important;
+  background: rgba(217, 83, 30, 0.1) !important;
+}
+
+html[data-theme-mode="system"] .exp-tasks-list li::before {
+  color: var(--brand) !important;
+}
+
+html[data-theme-mode="system"] .language-card:hover {
+  border-color: rgba(217, 83, 30, 0.45) !important;
+}
+
+html[data-theme-mode="system"] .lang-percent-badge {
+  color: var(--brand) !important;
+}
+
+/* 7. SERVICES & ESTIMATOR BLUE-PURGE */
+html[data-theme-mode="system"] .services-metric-num {
+  color: var(--brand) !important;
+  font-family: var(--font-serif) !important;
+}
+
+html[data-theme-mode="system"] .services-category-pill.active {
+  background: rgba(217, 83, 30, 0.12) !important;
+  color: var(--brand) !important;
+  border-color: var(--brand) !important;
+}
+
+html[data-theme-mode="system"] .service-track-badge {
+  color: var(--brand) !important;
+}
+
+html[data-theme-mode="system"] .service-badge-value {
+  background: rgba(217, 83, 30, 0.1) !important;
+  color: var(--brand) !important;
+  border-color: rgba(217, 83, 30, 0.3) !important;
+}
+
+html[data-theme-mode="system"] .check-index {
+  color: var(--brand) !important;
+}
+
+html[data-theme-mode="system"] .btn-service-inquire {
+  border-color: var(--ink) !important;
+  color: var(--ink) !important;
+}
+
+html[data-theme-mode="system"] .btn-service-inquire:hover {
+  background: var(--brand) !important;
+  border-color: var(--brand) !important;
+  color: var(--paper) !important;
+  box-shadow: 0 4px 14px rgba(217, 83, 30, 0.25) !important;
+}
+
+html[data-theme-mode="system"] .workflow-step-num {
+  color: var(--brand) !important;
+  font-family: var(--font-serif) !important;
+}
+
+html[data-theme-mode="system"] .faq-toggle-state {
+  color: var(--brand) !important;
+  background: rgba(217, 83, 30, 0.1) !important;
+}
+
+html[data-theme-mode="system"] .estimator-pill-btn.active {
+  background: rgba(217, 83, 30, 0.12) !important;
+  color: var(--brand) !important;
+  border-color: var(--brand) !important;
+}
+
+html[data-theme-mode="system"] .estimator-addon-chip.active {
+  background: rgba(217, 83, 30, 0.1) !important;
+  color: var(--brand) !important;
+  border-color: var(--brand) !important;
+}
+
+html[data-theme-mode="system"] .addon-check-marker {
+  color: var(--brand) !important;
+}
+
+html[data-theme-mode="system"] .result-metric-val {
+  color: var(--brand) !important;
+  font-family: var(--font-serif) !important;
+}
+
+html[data-theme-mode="system"] .engagement-badge {
+  background: rgba(217, 83, 30, 0.1) !important;
+  color: var(--brand) !important;
+}
+
+html[data-theme-mode="system"] .point-marker {
+  color: var(--brand) !important;
+}
+
+/* 8. CONTACT BLUE-PURGE */
+html[data-theme-mode="system"] a.direct-card-value:hover {
+  color: var(--brand) !important;
+}
+
+html[data-theme-mode="system"] .direct-card-action-btn {
+  color: var(--brand) !important;
+}
+
+html[data-theme-mode="system"] .contact-context-banner {
+  background: rgba(217, 83, 30, 0.08) !important;
+  border: 1px solid rgba(217, 83, 30, 0.2) !important;
+}
+
+html[data-theme-mode="system"] .context-value {
+  color: var(--brand) !important;
+}
+
+html[data-theme-mode="system"] .btn-contact-submit {
+  background: var(--ink) !important;
+  color: var(--paper) !important;
+  border-color: var(--ink) !important;
+}
+
+html[data-theme-mode="system"] .btn-contact-submit:hover:not(:disabled) {
+  background: var(--brand) !important;
+  border-color: var(--brand) !important;
+  color: var(--paper) !important;
+  box-shadow: 0 4px 14px rgba(217, 83, 30, 0.25) !important;
+}
+
+
+
+/* ==========================================================================
+   BUTTON & HIGHLIGHT TEXT OVERRIDES IN SYSTEM MODE
+   Changes:
+   1. "Desalew Alganeh" text & underline (.highlight) -> Clay (#d9531e)
+   2. All buttons across the portfolio -> iCog Labs Ink (#1a1612) & Clay (#d9531e)
+   3. Heading underlines & active nav states -> Clay (#d9531e)
+   100% scoped to html[data-theme-mode="system"] - Light and Dark modes untouched.
+   ========================================================================== */
+
+/* 1. HERO NAME HIGHLIGHT TEXT & UNDERLINE */
+html[data-theme-mode="system"] .highlight,
+html[data-theme-mode="system"] h1 .highlight,
+html[data-theme-mode="system"] .hero-content h1 .highlight {
+  color: #d9531e !important;
+  font-family: var(--font-serif) !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+  -webkit-text-fill-color: #d9531e !important;
+}
+
+html[data-theme-mode="system"] .highlight::after,
+html[data-theme-mode="system"] h1 .highlight::after,
+html[data-theme-mode="system"] .hero-content h1 .highlight::after {
+  background: #d9531e !important;
+  height: 3.5px !important;
+  border-radius: 3px !important;
+}
+
+/* 2. ALL PRIMARY & GENERAL BUTTONS */
+html[data-theme-mode="system"] .cta-button,
+html[data-theme-mode="system"] .cta-button:link,
+html[data-theme-mode="system"] .cta-button:visited,
+html[data-theme-mode="system"] .submit-button,
+html[data-theme-mode="system"] .submit-button-compact,
+html[data-theme-mode="system"] .project-link-btn,
+html[data-theme-mode="system"] .project-link-btn:link,
+html[data-theme-mode="system"] .project-link-btn:visited,
+html[data-theme-mode="system"] .cert-link-btn,
+html[data-theme-mode="system"] .cert-link-btn:link,
+html[data-theme-mode="system"] .cert-link-btn:visited,
+html[data-theme-mode="system"] .social-link,
+html[data-theme-mode="system"] .social-link:link,
+html[data-theme-mode="system"] .social-link:visited,
+html[data-theme-mode="system"] .login-button,
+html[data-theme-mode="system"] .education-more-btn,
+html[data-theme-mode="system"] .btn-primary,
+html[data-theme-mode="system"] button.btn-primary,
+html[data-theme-mode="system"] .btn-contact-submit,
+html[data-theme-mode="system"] .read-more-btn,
+html[data-theme-mode="system"] .mission-toggle-btn.active {
+  background: #1a1612 !important;
+  color: #f3eee4 !important;
+  border: 1px solid #1a1612 !important;
+  border-radius: 50px !important;
+  box-shadow: 0 4px 14px rgba(26, 22, 18, 0.18) !important;
+  font-family: var(--font-mono) !important;
+  font-weight: 600 !important;
+  text-shadow: none !important;
+  cursor: pointer !important;
+  transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease !important;
+}
+
+html[data-theme-mode="system"] .cta-button:hover,
+html[data-theme-mode="system"] .submit-button:hover,
+html[data-theme-mode="system"] .submit-button-compact:hover,
+html[data-theme-mode="system"] .project-link-btn:hover,
+html[data-theme-mode="system"] .cert-link-btn:hover,
+html[data-theme-mode="system"] .social-link:hover,
+html[data-theme-mode="system"] .login-button:hover,
+html[data-theme-mode="system"] .education-more-btn:hover,
+html[data-theme-mode="system"] .btn-primary:hover,
+html[data-theme-mode="system"] button.btn-primary:hover,
+html[data-theme-mode="system"] .btn-contact-submit:hover:not(:disabled),
+html[data-theme-mode="system"] .read-more-btn:hover,
+html[data-theme-mode="system"] .mission-toggle-btn.active:hover {
+  background: #d9531e !important;
+  border-color: #d9531e !important;
+  color: #f3eee4 !important;
+  box-shadow: 0 6px 20px rgba(217, 83, 30, 0.35) !important;
+  text-shadow: none !important;
+  transform: translateY(-2px) !important;
+}
+
+html[data-theme-mode="system"] .cta-button:active,
+html[data-theme-mode="system"] .submit-button:active,
+html[data-theme-mode="system"] .project-link-btn:active,
+html[data-theme-mode="system"] .login-button:active {
+  transform: scale(0.98) !important;
+}
+
+/* 3. SECONDARY & OUTLINE BUTTONS */
+html[data-theme-mode="system"] .cta-button.secondary,
+html[data-theme-mode="system"] .cta-button.secondary-outline,
+html[data-theme-mode="system"] .project-link-btn.secondary,
+html[data-theme-mode="system"] .btn-secondary,
+html[data-theme-mode="system"] .btn-download-resume-doc,
+html[data-theme-mode="system"] .btn-service-inquire,
+html[data-theme-mode="system"] .mission-toggle-btn {
+  background: transparent !important;
+  color: #1a1612 !important;
+  border: 1px solid rgba(26, 22, 18, 0.3) !important;
+  border-radius: 50px !important;
+  box-shadow: none !important;
+  font-family: var(--font-mono) !important;
+  font-weight: 600 !important;
+}
+
+html[data-theme-mode="system"] .cta-button.secondary:hover,
+html[data-theme-mode="system"] .cta-button.secondary-outline:hover,
+html[data-theme-mode="system"] .project-link-btn.secondary:hover,
+html[data-theme-mode="system"] .btn-secondary:hover,
+html[data-theme-mode="system"] .btn-download-resume-doc:hover,
+html[data-theme-mode="system"] .btn-service-inquire:hover,
+html[data-theme-mode="system"] .mission-toggle-btn:hover {
+  background: rgba(26, 22, 18, 0.06) !important;
+  border-color: #1a1612 !important;
+  color: #1a1612 !important;
+}
+
+/* 4. FILTER & TAB PILLS */
+html[data-theme-mode="system"] .filter-btn,
+html[data-theme-mode="system"] .pagination-btn,
+html[data-theme-mode="system"] .gallery-nav-btn {
+  background: #ede8df !important;
+  color: #1a1612 !important;
+  border: 1px solid rgba(26, 22, 18, 0.15) !important;
+  border-radius: 50px !important;
+  font-family: var(--font-mono) !important;
+  font-weight: 500 !important;
+}
+
+html[data-theme-mode="system"] .filter-btn:hover,
+html[data-theme-mode="system"] .pagination-btn:hover,
+html[data-theme-mode="system"] .gallery-nav-btn:hover {
+  background: rgba(217, 83, 30, 0.12) !important;
+  color: #d9531e !important;
+  border-color: #d9531e !important;
+}
+
+html[data-theme-mode="system"] .filter-btn.active,
+html[data-theme-mode="system"] .pagination-btn.active {
+  background: #d9531e !important;
+  color: #f3eee4 !important;
+  border-color: #d9531e !important;
+  box-shadow: 0 4px 14px rgba(217, 83, 30, 0.3) !important;
+}
+
+/* 5. HEADING UNDERLINES (Replaces #0078ff blue with #d9531e clay) */
+html[data-theme-mode="system"] .project-card h3::after,
+html[data-theme-mode="system"] .projects h2::after,
+html[data-theme-mode="system"] .about h2::after,
+html[data-theme-mode="system"] .experience h2::after,
+html[data-theme-mode="system"] .contact h2::after,
+html[data-theme-mode="system"] .about-text h3::after,
+html[data-theme-mode="system"] .contact-info h3::after,
+html[data-theme-mode="system"] .experience-item h4::after {
+  background: #d9531e !important;
+}
+
+/* 6. NAVBAR BRAND & ACTIVE ACCENTS */
+html[data-theme-mode="system"] .nav-brand-text {
+  background: linear-gradient(45deg, #d9531e, #c24413) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+html[data-theme-mode="system"] .nav-item > a::after {
+  background: #d9531e !important;
+}
+
+html[data-theme-mode="system"] .nav-item > a:hover,
+html[data-theme-mode="system"] .nav-item > a.active {
+  color: #d9531e !important;
+}
+
+html[data-theme-mode="system"] .bar {
+  background-color: #d9531e !important;
+}
+
+
+
+/* ==========================================================================
+   COMPLETE RESIDUAL BLUE PURGE (Image 1, Image 2 & All Sub-components)
+   Targeted exclusively for html[data-theme-mode="system"]
+   Replaces all residual cyan/royal blue (#0078ff, #0ea5e9, #38bdf8) with
+   authentic iCog Labs Clay (#d9531e), Ink (#1a1612), Paper (#f3eee4) & Sand (#e6d7bd).
+   ========================================================================== */
+
+/* 1. EYEBROWS & SECTION PILLS ("TECHNICAL COMPETENCIES", "ACADEMIC JOURNEY") */
+html[data-theme-mode="system"] .ref-clean-eyebrow {
+  border-color: rgba(217, 83, 30, 0.35) !important;
+  color: #d9531e !important;
+  background-color: rgba(217, 83, 30, 0.1) !important;
+  font-family: var(--font-mono) !important;
+  font-weight: 600 !important;
+}
+
+/* 2. SUBHEADING ACCENT UNDERLINES ("Core Engineering Proficiencies", "Formal Academic Education", etc.) */
+html[data-theme-mode="system"] .resume-col-title::after {
+  background: #d9531e !important;
+  height: 3px !important;
+  border-radius: 2px !important;
+}
+
+/* 3. SKILL PROGRESS BARS & TRACKS */
+html[data-theme-mode="system"] .resume-skill-fill,
+html[data-theme-mode="system"] .about .resume-skill-fill,
+html[data-theme-mode="system"] .resume-section .resume-skill-fill,
+html[data-theme-mode="system"] .lang-fill {
+  background: linear-gradient(90deg, #d9531e 0%, #e65c00 60%, #ff7849 100%) !important;
+  box-shadow: 0 0 10px rgba(217, 83, 30, 0.35) !important;
+}
+
+html[data-theme-mode="system"] .resume-skill-track,
+html[data-theme-mode="system"] .about .resume-skill-track,
+html[data-theme-mode="system"] .lang-track {
+  background: #ede8df !important;
+  border: 1px solid rgba(26, 22, 18, 0.12) !important;
+  box-shadow: inset 0 1px 2px rgba(26, 22, 18, 0.08) !important;
+}
+
+html[data-theme-mode="system"] .skill-percent-tag {
+  color: #d9531e !important;
+  font-family: var(--font-mono) !important;
+  font-weight: 600 !important;
+}
+
+/* 4. TIMELINES (Vertical Line, Hollow Circles & Dates) */
+html[data-theme-mode="system"] .resume-item {
+  border-left: 2px solid rgba(217, 83, 30, 0.35) !important;
+}
+
+html[data-theme-mode="system"] .resume-skills-block {
+  border-left: 2px solid rgba(217, 83, 30, 0.35) !important;
+}
+
+html[data-theme-mode="system"] .resume-item::before {
+  border: 2px solid #d9531e !important;
+  background: #f3eee4 !important;
+}
+
+html[data-theme-mode="system"] .resume-date {
+  color: #d9531e !important;
+  font-family: var(--font-mono) !important;
+  font-weight: 600 !important;
+}
+
+html[data-theme-mode="system"] .resume-contact-list a {
+  color: #d9531e !important;
+}
+
+html[data-theme-mode="system"] .timeline-dot {
+  background: #d9531e !important;
+  box-shadow: 0 0 0 4px var(--bg-1), 0 0 15px rgba(217, 83, 30, 0.4) !important;
+}
+
+html[data-theme-mode="system"] .timeline-date {
+  color: #d9531e !important;
+  font-family: var(--font-mono) !important;
+  font-weight: 600 !important;
+}
+
+html[data-theme-mode="system"] .timeline-content-card:hover {
+  border-color: #d9531e !important;
+  box-shadow: 0 20px 45px rgba(217, 83, 30, 0.12) !important;
+}
+
+/* 5. CARDS, BADGES, TAGS & HOVER ACCENTS */
+html[data-theme-mode="system"] .project-category-badge {
+  color: #d9531e !important;
+  border: 1px solid rgba(217, 83, 30, 0.3) !important;
+  background: rgba(217, 83, 30, 0.1) !important;
+}
+
+html[data-theme-mode="system"] .tech-tag:hover {
+  background: #d9531e !important;
+  border-color: #d9531e !important;
+  color: #f3eee4 !important;
+  box-shadow: 0 6px 18px rgba(217, 83, 30, 0.35) !important;
+}
+
+html[data-theme-mode="system"] .about-chip:hover {
+  border-color: #d9531e !important;
+  color: #d9531e !important;
+}
+
+html[data-theme-mode="system"] .social-icon-link:hover {
+  border-color: rgba(217, 83, 30, 0.5) !important;
+  color: #d9531e !important;
+  box-shadow: 0 4px 12px rgba(217, 83, 30, 0.2) !important;
+}
+
+html[data-theme-mode="system"] .skills-card:hover {
+  border-color: rgba(217, 83, 30, 0.35) !important;
+}
+
+html[data-theme-mode="system"] .skills-summary:hover {
+  color: #d9531e !important;
+}
+
+html[data-theme-mode="system"] .skills-card li::before,
+html[data-theme-mode="system"] .about-text li::before,
+html[data-theme-mode="system"] .experience-item li::before {
+  color: #d9531e !important;
+}
+
+html[data-theme-mode="system"] .course-toggle summary:hover {
+  color: #d9531e !important;
+}
+
+html[data-theme-mode="system"] .service-path-card:hover {
+  border-color: #d9531e !important;
+  box-shadow: 0 15px 35px rgba(217, 83, 30, 0.15) !important;
+}
+
+html[data-theme-mode="system"] .education-pro-card {
+  border-top-color: #d9531e !important;
+}
+
+html[data-theme-mode="system"] .cert-card:hover,
+html[data-theme-mode="system"] .ref-card:hover {
+  border-color: #d9531e !important;
+  box-shadow: 0 20px 40px rgba(217, 83, 30, 0.15) !important;
+}
+
+html[data-theme-mode="system"] .cert-type-badge,
+html[data-theme-mode="system"] .ref-tag {
+  background: rgba(217, 83, 30, 0.1) !important;
+  color: #d9531e !important;
+}
+
+html[data-theme-mode="system"] .cert-icon-box,
+html[data-theme-mode="system"] .ref-avatar {
+  background: rgba(217, 83, 30, 0.08) !important;
+}
+
+html[data-theme-mode="system"] .contact-value:hover,
+html[data-theme-mode="system"] .back-link:hover {
+  color: #d9531e !important;
+}
+
+html[data-theme-mode="system"] .ref-declaration-ledger {
+  border-top-color: rgba(217, 83, 30, 0.35) !important;
+}
+
+html[data-theme-mode="system"] .skills-stat-card:hover {
+  border-color: rgba(217, 83, 30, 0.45) !important;
+}
+
+html[data-theme-mode="system"] .skills-stat-num {
+  color: #d9531e !important;
+}
+
+html[data-theme-mode="system"] .skills-search-input:focus {
+  border-color: #d9531e !important;
+  box-shadow: 0 0 0 3px rgba(217, 83, 30, 0.25) !important;
+}
+

@@ -22,15 +22,15 @@ import Footer from './components/Footer';
 function App() {
   const location = useLocation();
   const [themeMode, setThemeMode] = useState(() => {
-    return localStorage.getItem('themeMode') || 'dark';
+    return localStorage.getItem('themeMode') || 'system';
   });
 
   useEffect(() => {
     const applyTheme = (mode) => {
       let resolved = mode;
       if (mode === 'system') {
-        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        resolved = prefersDark ? 'dark' : 'light';
+        // System mode directly presents the iCog Labs Light Mode aesthetic
+        resolved = 'light';
       }
       document.documentElement.setAttribute('data-theme', resolved);
       document.documentElement.setAttribute('data-theme-mode', mode);
@@ -39,13 +39,6 @@ function App() {
     };
 
     applyTheme(themeMode);
-
-    if (themeMode === 'system' && window.matchMedia) {
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      const handleChange = () => applyTheme('system');
-      mediaQuery.addEventListener('change', handleChange);
-      return () => mediaQuery.removeEventListener('change', handleChange);
-    }
   }, [themeMode]);
 
   useEffect(() => {
